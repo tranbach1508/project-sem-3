@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30428.66
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppProjectSEM3", "WebAppProjectSEM3\WebAppProjectSEM3.csproj", "{B22B4DE5-1BAF-447C-8E38-64816EAA7248}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBLL", "WebBLL\WebBLL.csproj", "{5359346B-08F4-4312-AD82-C628CAC50D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDAL", "WebDAL\WebDAL.csproj", "{04713458-159B-4BD6-9943-A7A9485B7D2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B22B4DE5-1BAF-447C-8E38-64816EAA7248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22B4DE5-1BAF-447C-8E38-64816EAA7248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22B4DE5-1BAF-447C-8E38-64816EAA7248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22B4DE5-1BAF-447C-8E38-64816EAA7248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5359346B-08F4-4312-AD82-C628CAC50D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5359346B-08F4-4312-AD82-C628CAC50D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5359346B-08F4-4312-AD82-C628CAC50D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5359346B-08F4-4312-AD82-C628CAC50D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04713458-159B-4BD6-9943-A7A9485B7D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04713458-159B-4BD6-9943-A7A9485B7D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04713458-159B-4BD6-9943-A7A9485B7D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04713458-159B-4BD6-9943-A7A9485B7D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8491F3A-08B4-4DF2-9963-685370654090}
+	EndGlobalSection
+EndGlobal
