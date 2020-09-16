@@ -10,10 +10,10 @@ namespace Project.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Theme/Home.cshtml");
         }
 
-        public ActionResult About()
+        /*public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -25,6 +25,6 @@ namespace Project.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }*/
     }
 }

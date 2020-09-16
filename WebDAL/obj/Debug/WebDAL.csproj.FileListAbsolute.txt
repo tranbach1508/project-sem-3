@@ -1,0 +1,12 @@
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.dll.config
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.dll
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.pdb
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CopyComplete
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.dll
+C:\Users\Admin\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.pdb

@@ -1,0 +1,10 @@
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.dll
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.pdb
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\WebDAL.dll
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\WebDAL.pdb
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\WebDAL.dll.config
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CopyComplete
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.dll
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.pdb

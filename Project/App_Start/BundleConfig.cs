@@ -20,11 +20,20 @@ namespace Project
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/vendor/modernizr-2.8.3.min.js",
+                      "~/Scripts/vendor/jquery-1.12.4.min.js",
+                      "~/Scripts/popper.min.js",
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/plugins.js",
+                      "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/ionicons.min.css",
+                      "~/Content/plugins.css",
+                      "~/Content/helper.css",
+                      "~/Content/style.css"));
         }
     }
 }
