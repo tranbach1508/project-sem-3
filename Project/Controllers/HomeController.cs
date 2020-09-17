@@ -13,18 +13,19 @@ namespace Project.Controllers
             return View("~/Views/Theme/Home.cshtml");
         }
 
-        /*public ActionResult About()
+        public ActionResult Collection()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View("~/Views/Theme/Collection.cshtml");
         }
 
-        public ActionResult Contact()
+        public ActionResult Cart()
         {
-            ViewBag.Message = "Your contact page.";
+            return View("~/Views/Theme/Cart.cshtml");
+        }
 
-            return View();
-        }*/
+        public ActionResult Checkout()
+        {
+            return View("~/Views/Theme/Checkout.cshtml");
+        }
     }
 }
