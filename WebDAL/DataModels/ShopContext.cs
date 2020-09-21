@@ -11,31 +11,36 @@ namespace WebDAL.DataModels
     {
         public ShopContext() : base("name=ShopContext")
         {
-            Database.SetInitializer<ShopContext>(new ShopDBInitializer());
+            Database.SetInitializer<ShopContext>(new UniDBInitializer<ShopContext>());
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public virtual DbSet<AccAdmin> AccAdmins { get; set; }
+        public virtual DbSet<AccCustomer> AccCustomers { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Faq> Faqs { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Subcategory> Subcategories { get; set; }
+
+        private class UniDBInitializer<T>: DropCreateDatabaseAlways<ShopContext>
         {
-            /*//Adds configurations for Student from separate class
-            modelBuilder.Configurations.Add(new CategoryConfigurations());
-
-            modelBuilder.Entity<Category>()
-                .ToTable("TeacherInfo");
-
-            modelBuilder.Entity<Category>()
-                .MapToStoredProcedures();*/
+            protected override void Seed(ShopContext context)
+            {
+                IList<Category> categories = new List<Category>();
+                categories.Add(new Category()
+                {
+                    Id = "B001",
+                    Name = "Sach Giao Khoa"
+                });
+                foreach (Category category in categories)
+                    context.Categories.Add(category);
+                base.Seed(context);
+            }
         }
-
-        public DbSet<AccAdmin> AccAdmins { get; set; }
-        public DbSet<AccCustomer> AccCustomers { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Faq> Faqs { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
-        public DbSet<Subcategory> Subcategories { get; set; } 
     }
-    }
+}
 
