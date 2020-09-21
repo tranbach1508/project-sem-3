@@ -60,7 +60,10 @@
     <Compile Include="DataModels\Order.cs" />
     <Compile Include="DataModels\OrderDetail.cs" />
     <Compile Include="DataModels\Product.cs" />
+    <Compile Include="DataModels\ProductConfigurations.cs" />
     <Compile Include="DataModels\Publisher.cs" />
+    <Compile Include="DataModels\ShopContext.cs" />
+    <Compile Include="DataModels\ShopDBInitializer.cs" />
     <Compile Include="DataModels\Subcategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,3 +8,15 @@ C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CoreCompileI
 C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CopyComplete
 C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.dll
 C:\Users\Admin\Desktop\project-sem-3\WebBLL\obj\Debug\WebBLL.pdb
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\WebBLL.dll
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\WebBLL.pdb
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\WebDAL.dll
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\EntityFramework.dll
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\WebDAL.pdb
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\WebDAL.dll.config
+F:\Project-3\project-sem-3\WebBLL\bin\Debug\EntityFramework.xml
+F:\Project-3\project-sem-3\WebBLL\obj\Debug\WebBLL.csprojAssemblyReference.cache
+F:\Project-3\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CoreCompileInputs.cache
+F:\Project-3\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CopyComplete
+F:\Project-3\project-sem-3\WebBLL\obj\Debug\WebBLL.dll
+F:\Project-3\project-sem-3\WebBLL\obj\Debug\WebBLL.pdb

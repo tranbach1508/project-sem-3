@@ -34,6 +34,7 @@ namespace Project
                       "~/Content/plugins.css",
                       "~/Content/helper.css",
                       "~/Content/style.css"));
+            
         }
     }
 }
