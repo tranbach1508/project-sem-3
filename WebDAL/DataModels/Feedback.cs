@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class Feedback
+    public class Feedback
     {
         [Key]
         public string Id { get; set; }

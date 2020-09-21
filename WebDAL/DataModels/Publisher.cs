@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class Publisher
+    public class Publisher
     {
         [Key]
         public string Id { get; set; }

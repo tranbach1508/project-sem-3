@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class AccAdmin
+    public class AccAdmin
     {
         [Key]
         public string Id { get; set; }
