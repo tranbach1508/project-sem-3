@@ -14,17 +14,17 @@ namespace WebDAL.DataModels
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Migrations.Configuration>("ShopContext"));
         }
 
-        public  DbSet<AccAdmin> AccAdmins { get; set; }
-        public  DbSet<AccCustomer> AccCustomers { get; set; }
-        public  DbSet<Author> Authors { get; set; }
-        public  DbSet<Category> Categories { get; set; }
-        public  DbSet<Faq> Faqs { get; set; }
-        public  DbSet<Feedback> Feedbacks { get; set; }
-        public  DbSet<Order> Orders { get; set; }
-        public  DbSet<OrderDetail> OrderDetails { get; set; }
-        public  DbSet<Product> Products { get; set; }
-        public  DbSet<Publisher> Publishers { get; set; }
-        public  DbSet<Subcategory> Subcategories { get; set; }
+        public virtual DbSet<AccAdmin> AccAdmins { get; set; }
+        public virtual DbSet<AccCustomer> AccCustomers { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Faq> Faqs { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Subcategory> Subcategories { get; set; }
         
     }
     class UniDBInitializer<T> : DropCreateDatabaseAlways<ShopContext>

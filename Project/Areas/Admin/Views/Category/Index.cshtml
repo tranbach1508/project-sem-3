@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-category">Add category</button></div>
+    <div class="category-form card">
+        <form id="add-category">
+            <div class="form-group">
+                <label for="name">Email address</label>
+                <input type="text" class="form-control" id="name" placeholder="Book Category">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Configs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>
+                    <div class="flex">
+                        <button type="button" class="btn btn-secondary">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+<script>
+    $(document).ready(function () {
+        $('.category-form').hide();
+        $('.show-form-category').click(function () {
+            $('.category-form').show();
+        })
+    })
+</script>

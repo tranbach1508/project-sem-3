@@ -34,3 +34,6 @@ C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.dll
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.pdb
 C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.dll
 C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.xml
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.dll.config
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.xml

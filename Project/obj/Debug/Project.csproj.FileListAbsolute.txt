@@ -338,3 +338,4 @@ C:\Users\ADMIN\Downloads\project-sem-3\Project\obj\Debug\Project.csproj.CoreComp
 C:\Users\ADMIN\Downloads\project-sem-3\Project\obj\Debug\Project.csproj.CopyComplete
 C:\Users\ADMIN\Downloads\project-sem-3\Project\obj\Debug\Project.dll
 C:\Users\ADMIN\Downloads\project-sem-3\Project\obj\Debug\Project.pdb
+C:\Users\ADMIN\Desktop\project-sem-3\Project\bin\WebBLL.dll.config
