@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebDAL.DataModels;
 
 namespace WebDAL.DataModels
 {
@@ -11,7 +12,6 @@ namespace WebDAL.DataModels
     {
         public ShopContext() : base("name=ShopContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Migrations.Configuration>("ShopContext"));
         }
 
         public virtual DbSet<AccAdmin> AccAdmins { get; set; }
@@ -27,20 +27,26 @@ namespace WebDAL.DataModels
         public virtual DbSet<Subcategory> Subcategories { get; set; }
         
     }
-    class UniDBInitializer<T> : DropCreateDatabaseAlways<ShopContext>
+    public class UniDBInitializer<T> : DropCreateDatabaseAlways<ShopContext>
     {
+
         protected override void Seed(ShopContext context)
         {
+
             IList<Category> categories = new List<Category>();
+
             categories.Add(new Category()
             {
                 Id = "B001",
-                Name = "Sach Giao Khoa"
+                Name = "SGK"
             });
+
+
             foreach (Category category in categories)
                 context.Categories.Add(category);
             base.Seed(context);
         }
     }
 }
+
 

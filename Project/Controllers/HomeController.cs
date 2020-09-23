@@ -12,7 +12,6 @@ namespace Project.Controllers
         public ShopContext db = new ShopContext();
         public ActionResult Index()
         {
-            List<Category> categories = db.Categories.ToList();
             return View("~/Views/Theme/Home.cshtml");
         }
 
