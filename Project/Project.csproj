@@ -128,7 +128,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+<<<<<<< HEAD
     <Compile Include="Areas\Admin\Controllers\AccAdminController.cs" />
+=======
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+>>>>>>> origin/bach
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\Order_DetailController.cs" />
@@ -141,6 +145,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\css\sb-admin-2.css" />
     <Content Include="Areas\Admin\Assets\css\sb-admin-2.min.css" />
+    <Content Include="Areas\Admin\Assets\css\Style.css" />
     <Content Include="Areas\Admin\Assets\js\demo\chart-area-demo.js" />
     <Content Include="Areas\Admin\Assets\js\demo\chart-bar-demo.js" />
     <Content Include="Areas\Admin\Assets\js\demo\chart-pie-demo.js" />
@@ -1914,9 +1919,13 @@
     <Content Include="Areas\Admin\Assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\Admin\Assets\vendor\jquery\jquery.slim.min.map" />
+<<<<<<< HEAD
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order_Detail\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AccAdmin\Index.cshtml" />
+=======
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+>>>>>>> origin/bach
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

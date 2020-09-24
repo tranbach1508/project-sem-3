@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-category">Add category</button></div>
+    <div class="card">
+        <div class="category-form card-body">
+            <form id="add-category" method="post">
+                <div class="form-group" style="display:none">
+                    <input type="text" class="form-control" id="id" placeholder="Book Category">
+                </div>
+                <div class="form-group">
+                    <label for="name">Email address</label>
+                    <input type="text" class="form-control" id="name" placeholder="Book Category">
+                </div>
+                <button type="submit" class="btn btn-primary add-category">Submit</button>
+                <button type="button" class="btn btn-primary update-category" style="display: none">Update</button>
+                <button type="button" class="btn btn-light close-form">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Configs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+    </div>
+    </div>
+<script>
+        $(document).ready(function () {
+            $('.category-form').hide();
+            $('.show-form-category').click(function () {
+                $('.category-form').show();
+            });
+            // add category
+            $('#add-category').submit(function (event) {
+                event.preventDefault();
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Category/Insert", // Controller/View
+                        data: { //Passing data
+                            Id: generateId(6),
+                            Name: $("#name").val(), //Reading text box values using Jquery
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+            // delete category
+            $('.remove-category').click(function () {
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Category/Delete", // Controller/View
+                        data: { //Passing data
+                            Id: $(this).attr('data-id'),
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+
+            $('.close-form').click(function () {
+                $('.category-form').hide();
+            })
+
+            $(document).on('click','.edit-category',function () {
+                $('.category-form').show();
+                $('#id').val($(this).attr('data-id')),
+                    $('#name').val($(this).attr('data-name')),
+                    $('.update-category').show();
+                $('.add-category').hide();
+            })
+
+            $('.update-category').click(function () {
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Category/Edit", // Controller/View
+                        data: { //Passing data
+                            Id: $('#id').val(),
+                            Name: $('#name').val()
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+
+            function generateId(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+            function load() {
+                var content;
+                $.get("Category/Get", function (categories) {
+                    console.log(categories);
+                    categories.map(function (category, index) {
+                        content += '<tr><th scope="row">' + category.Id + '</th><td>' + category.Name + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-category" data-id="' + category.Id + '" data-name="' + category.Name + '">Edit</button><button type="button" class="btn btn-danger remove-category" data-id=' + category.Id + '>Delete</button></div></td></tr>';
+                    })
+                    $('table tbody').html(content);
+                });
+            }
+            load();
+        })
+</script>

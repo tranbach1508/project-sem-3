@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
+<<<<<<< HEAD
    public class Faq
+=======
+    public class Faq
+>>>>>>> origin/bach
     {
         [Key]
         public string Id { get; set; }

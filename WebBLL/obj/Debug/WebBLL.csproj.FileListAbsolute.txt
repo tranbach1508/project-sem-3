@@ -32,6 +32,7 @@ C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CoreCompil
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.csproj.CopyComplete
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.dll
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\obj\Debug\WebBLL.pdb
+<<<<<<< HEAD
 C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.dll
 C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.pdb
 C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebBLL\bin\Debug\WebDAL.dll
@@ -50,3 +51,10 @@ C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.S
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\bin\Debug\WebBLL.dll.config
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\ADMIN\Downloads\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.xml
+=======
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.xml
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\WebBLL.dll.config
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ADMIN\Desktop\project-sem-3\WebBLL\bin\Debug\EntityFramework.SqlServer.xml
+>>>>>>> origin/bach
