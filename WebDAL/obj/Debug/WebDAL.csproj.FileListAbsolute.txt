@@ -34,3 +34,15 @@ C:\Users\ADMIN\Downloads\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServe
 C:\Users\ADMIN\Downloads\project-sem-3\WebDAL\bin\Debug\EntityFramework.xml
 C:\Users\ADMIN\Downloads\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ADMIN\Downloads\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CopyComplete
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.dll.config
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.dll
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\WebDAL.pdb
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.dll
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.xml
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csprojAssemblyReference.cache
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CoreCompileInputs.cache
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CopyComplete
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.dll
+C:\Users\Admin\OneDrive\Desktop\project-sem-3\WebDAL\obj\Debug\WebDAL.pdb

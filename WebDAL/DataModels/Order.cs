@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class Order
+   public class Order
     {
         [Key]
         public string Id { get; set; }

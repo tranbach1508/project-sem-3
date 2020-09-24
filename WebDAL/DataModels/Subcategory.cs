@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class Subcategory
+   public class Subcategory
     {
         [Key]
         public string Id { get; set; }

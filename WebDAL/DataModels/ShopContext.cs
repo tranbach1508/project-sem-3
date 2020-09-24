@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class ShopContext : DbContext
+     public class ShopContext : DbContext
     {
         public ShopContext() : base("name=ShopContext")
         {
             Database.SetInitializer<ShopContext>(new UniDBInitializer<ShopContext>());
         }
-
+      
         public virtual DbSet<AccAdmin> AccAdmins { get; set; }
         public virtual DbSet<AccCustomer> AccCustomers { get; set; }
         public virtual DbSet<Author> Authors { get; set; }

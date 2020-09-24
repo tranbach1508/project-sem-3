@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace Project.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class AccAdminController : Controller
     {
-       
-        // GET: Admin/Home
+        // GET: Admin/AccAdmin
         public ActionResult Index()
         {
             return View();

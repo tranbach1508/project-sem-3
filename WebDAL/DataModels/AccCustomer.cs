@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebDAL.DataModels
 {
-    class AccCustomer
+  public  class AccCustomer
     {
         [Key]
         public string Id { get; set; }
