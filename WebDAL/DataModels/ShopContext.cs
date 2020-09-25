@@ -4,18 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebDAL.DataModels;
 
 namespace WebDAL.DataModels
 {
-<<<<<<< HEAD
      public class ShopContext : DbContext
-=======
-    public class ShopContext : DbContext
->>>>>>> origin/bach
     {
         public ShopContext() : base("name=ShopContext")
         {
+            Database.SetInitializer<ShopContext>(new UniDBInitializer<ShopContext>());
         }
       
         public virtual DbSet<AccAdmin> AccAdmins { get; set; }
@@ -29,28 +25,22 @@ namespace WebDAL.DataModels
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Subcategory> Subcategories { get; set; }
-        
-    }
-    public class UniDBInitializer<T> : DropCreateDatabaseAlways<ShopContext>
-    {
 
-        protected override void Seed(ShopContext context)
+        private class UniDBInitializer<T>: DropCreateDatabaseAlways<ShopContext>
         {
-
-            IList<Category> categories = new List<Category>();
-
-            categories.Add(new Category()
+            protected override void Seed(ShopContext context)
             {
-                Id = "B001",
-                Name = "SGK"
-            });
-
-
-            foreach (Category category in categories)
-                context.Categories.Add(category);
-            base.Seed(context);
+                IList<Category> categories = new List<Category>();
+                categories.Add(new Category()
+                {
+                    Id = "B001",
+                    Name = "Sach Giao Khoa"
+                });
+                foreach (Category category in categories)
+                    context.Categories.Add(category);
+                base.Seed(context);
+            }
         }
     }
 }
-
 

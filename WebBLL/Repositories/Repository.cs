@@ -13,6 +13,12 @@ namespace WebBLL.Repositories
     {
 
         protected ShopContext db;
+
+        public object Get()
+        {
+            throw new NotImplementedException();
+        }
+
         protected DbSet<TEntity> tbl;
 
         public Repository()

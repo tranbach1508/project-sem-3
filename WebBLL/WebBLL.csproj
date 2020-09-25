@@ -51,14 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="Repositories\IRepositories.cs" />
     <Compile Include="Repositories\Repository.cs" />
-=======
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
->>>>>>> origin/bach
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebDAL\WebDAL.csproj">

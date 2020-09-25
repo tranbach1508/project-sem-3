@@ -37,17 +37,17 @@
     </div>
 <script>
         $(document).ready(function () {
-            $('.category-form').hide();
-            $('.show-form-category').click(function () {
-                $('.category-form').show();
+            $('.author-form').hide();
+            $('.show-form-author').click(function () {
+                $('.author-form').show();
             });
             // add category
-            $('#add-category').submit(function (event) {
+            $('#add-author').submit(function (event) {
                 event.preventDefault();
                 $.ajax(
                     {
                         type: "POST", //HTTP POST Method
-                        url: "Category/Insert", // Controller/View
+                        url: "Author/Insert", // Controller/View
                         data: { //Passing data
                             Id: generateId(6),
                             Name: $("#name").val(), //Reading text box values using Jquery
@@ -58,11 +58,11 @@
                     });
             })
             // delete category
-            $('.remove-category').click(function () {
+            $('.remove-author').click(function () {
                 $.ajax(
                     {
                         type: "POST", //HTTP POST Method
-                        url: "Category/Delete", // Controller/View
+                        url: "Author/Delete", // Controller/View
                         data: { //Passing data
                             Id: $(this).attr('data-id'),
                         },
@@ -71,24 +71,21 @@
                         }
                     });
             })
-
             $('.close-form').click(function () {
-                $('.category-form').hide();
+                $('.author-form').hide();
             })
-
-            $(document).on('click','.edit-category',function () {
-                $('.category-form').show();
+            $(document).on('click','.edit-author',function () {
+                $('.author-form').show();
                 $('#id').val($(this).attr('data-id')),
                     $('#name').val($(this).attr('data-name')),
-                    $('.update-category').show();
-                $('.add-category').hide();
+                    $('.update-author').show();
+                $('.add-author').hide();
             })
-
-            $('.update-category').click(function () {
+            $('.update-author').click(function () {
                 $.ajax(
                     {
                         type: "POST", //HTTP POST Method
-                        url: "Category/Edit", // Controller/View
+                        url: "author/Edit", // Controller/View
                         data: { //Passing data
                             Id: $('#id').val(),
                             Name: $('#name').val()
@@ -98,7 +95,6 @@
                         }
                     });
             })
-
             function generateId(length) {
                 var result = '';
                 var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -108,13 +104,12 @@
                 }
                 return result;
             }
-
             function load() {
                 var content;
-                $.get("Category/Get", function (categories) {
-                    console.log(categories);
-                    categories.map(function (category, index) {
-                        content += '<tr><th scope="row">' + category.Id + '</th><td>' + category.Name + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-category" data-id="' + category.Id + '" data-name="' + category.Name + '">Edit</button><button type="button" class="btn btn-danger remove-category" data-id=' + category.Id + '>Delete</button></div></td></tr>';
+                $.get("Author/Get", function (authores) {
+                    console.log(authores);
+                    authores.map(function (author, index) {
+                        content += '<tr><th scope="row">' + author.Id + '</th><td>' + author.Name + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-author" data-id="' + author.Id + '" data-name="' + author.Name + '">Edit</button><button type="button" class="btn btn-danger remove-author" data-id=' + author.Id + '>Delete</button></div></td></tr>';
                     })
                     $('table tbody').html(content);
                 });
