@@ -3,23 +3,23 @@
 }
 
 <div class="container-fluid">
-    <div class="mb-10"><button type="button" class="btn btn-success show-form-accadmin">Add account admin</button></div>
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-faq">Add Faq</button></div>
     <div class="card">
-        <div class="accadmin-form card-body">
-            <form id="add-accadmin" method="post">
+        <div class="faq-form card-body">
+            <form id="add-faq" method="post">
                 <div class="form-group" style="display:none">
                     <input type="text" class="form-control" id="id" placeholder="Id">
                 </div>
                 <div class="form-group">
-                    <label for="name">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username">
+                    <label for="query">Query</label>
+                    <input type="text" class="form-control" id="query" placeholder="Query">
                 </div>
                 <div class="form-group">
-                    <label for="name">Password</label>
-                    <input type="text" class="form-control" id="password" placeholder="Password"/>
+                    <label for="answer">Answer</label>
+                    <textarea class="form-control" id="answer" placeholder="Answer"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary add-accadmin">Submit</button>
-                <button type="button" class="btn btn-primary update-accadmin" style="display: none">Update</button>
+                <button type="submit" class="btn btn-primary add-faq">Submit</button>
+                <button type="button" class="btn btn-primary update-faq" style="display: none">Update</button>
                 <button type="button" class="btn btn-light close-form">Close</button>
             </form>
         </div>
@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    <th scope="col">Query</th>
+                    <th scope="col">Answer</th>
                     <th scope="col">Configs</th>
                 </tr>
             </thead>
@@ -41,49 +41,49 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('.accadmin-form').hide();
-        $('.show-form-accadmin').click(function () {
-            $('.accadmin-form').show();
+        $('.faq-form').hide();
+        $('.show-form-faq').click(function () {
+            $('.faq-form').show();
         });
-        // add accadmin
-        $('#add-accadmin').submit(function (event) {
+        // add faq
+        $('#add-faq').submit(function (event) {
             event.preventDefault();
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Insert", // Controller/View
+                    url: "Faq/Insert", // Controller/View
                     data: { //Passing data
                         Id: generateId(6),
-                        Username: $("#username").val(),
-                        Password: $("#password").val(),
+                        Query: $("#query").val(),
+                        Answer: $("#answer").val(),
                     },
                     success: function (response) {
                         load();
                     }
                 });
         })
-        // delete accadmin
+        // delete faq
 
         $('.close-form').click(function () {
-            $('.accadmin-form').hide();
+            $('.faq-form').hide();
         })
-        $(document).on('click', '.edit-accadmin', function () {
-            $('.accadmin-form').show();
+        $(document).on('click', '.edit-faq', function () {
+            $('.faq-form').show();
             $('#id').val($(this).attr('data-id')),
-                $('#username').val($(this).attr('data-username')),
-                $('#password').val($(this).attr('data-password')),
-                $('.update-accadmin').show();
-            $('.add-accadmin').hide();
+                $('#query').val($(this).attr('data-query')),
+                $('#answer').val($(this).attr('data-answer')),
+                $('.update-faq').show();
+            $('.add-faq').hide();
         })
-        $('.update-accadmin').click(function () {
+        $('.update-faq').click(function () {
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Edit", // Controller/View
+                    url: "Faq/Edit", // Controller/View
                     data: { //Passing data
                         Id: $('#id').val(),
-                        Username: $('#username').val(),
-                        Password: $('#password').val(),
+                        Query: $('#query').val(),
+                        Answer: $('#answer').val(),
                     },
                     success: function (response) {
                         load();
@@ -91,11 +91,11 @@
                 });
         })
         load();
-        $(document).on('click', '.remove-accadmin', function () {
+        $(document).on('click', '.remove-faq', function () {
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Delete", // Controller/View
+                    url: "Faq/Delete", // Controller/View
                     data: { //Passing data
                         Id: $(this).attr('data-id'),
                     },
@@ -106,11 +106,11 @@
         })
         function load() {
             var content;
-            $.get("AccAdmin/Get", function (adms) {
-                adms.map(function (adm, index) {
-                    content += '<tr><th scope="row">' + adm.Id + '</th><td>' + adm.Username + '</td><td>' + adm.Password + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-accadmin" data-id="' + adm.Id + '" data-username="' + adm.Username + '" data-password="' + adm.Password + '">Edit</button><button type="button" class="btn btn-danger remove-accadmin" data-id=' + adm.Id + '>Delete</button></div></td></tr>';
+            $.get("Faq/Get", function (faqs) {
+                faqs.map(function (faq, index) {
+                    content += '<tr><th scope="row">' + faq.Id + '</th><td>' + faq.Query + '</td><td>' + faq.Answer + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-faq" data-id="' + faq.Id + '" data-query="' + faq.Query + '" data-answer="' + faq.Answer + '">Edit</button><button type="button" class="btn btn-danger remove-faq" data-id=' + faq.Id + '>Delete</button></div></td></tr>';
                 })
-                if (adms.length > 0) {
+                if (faqs.length > 0) {
                     $('table tbody').html(content);
                 } else {
                     $('table tbody').html("");

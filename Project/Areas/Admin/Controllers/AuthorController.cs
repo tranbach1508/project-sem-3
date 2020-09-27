@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using WebDAL.DataModels;
-using WebBLL.Repository;
+using WebBLL.Repositories;
 
 namespace Project.Areas.Admin.Controllers
 {
@@ -9,15 +9,15 @@ namespace Project.Areas.Admin.Controllers
         public Repository<Author> rp = new Repository<Author>();
         public ActionResult Index()
         {
-            return View("~/Areas/Admin/Views/Author/Index.cshtml", rp.Get());
+            return View("~/Areas/Admin/Views/Author/Index.cshtml");
         }
 
         [HttpPost]
-        public ActionResult Insert(Author cat)
+        public ActionResult Insert(Author auth)
         {
             try
             {
-                if (rp.Add(cat))
+                if (rp.Add(auth))
                 {
                     ViewBag.Message = "Author added successfully";
                 }
@@ -31,11 +31,11 @@ namespace Project.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Author cat)
+        public ActionResult Edit(Author auth)
         {
             try
             {
-                if (rp.Edit(cat))
+                if (rp.Edit(auth))
                 {
                     ViewBag.Message = "Author edited successfully";
                 }

@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebBLL.Repository
+namespace WebBLL.Repositories
 {
-    public interface IRepository<T> where T : class,new()
+    public interface IRepository<T> where T : class, new()
     {
         IEnumerable<T> Get();
         IEnumerable<T> Get(Expression<Func<T, bool>> predicate);

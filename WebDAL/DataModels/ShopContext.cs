@@ -11,7 +11,7 @@ namespace WebDAL.DataModels
     {
         public ShopContext() : base("name=ShopContext")
         {
-            Database.SetInitializer<ShopContext>(new UniDBInitializer<ShopContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Migrations.Configuration>("ShopContext"));
         }
       
         public virtual DbSet<AccAdmin> AccAdmins { get; set; }

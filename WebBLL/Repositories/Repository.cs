@@ -9,154 +9,54 @@ using WebDAL.DataModels;
 
 namespace WebBLL.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<T> : IRepository<T> where T : class, new()
     {
-
-        protected ShopContext db;
-
-        public object Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected DbSet<TEntity> tbl;
-
+        public ShopContext db;
+        public DbSet<T> tbl;
         public Repository()
         {
             db = new ShopContext();
-            tbl = db.Set<TEntity>();
+            tbl = db.Set<T>();
         }
-        public bool Add(TEntity entity)
+        public bool Add(T entity)
         {
-            try
-            {
-                tbl.Add(entity);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            tbl.Add(entity);
+            SaveChange();
+            return true;
         }
 
-        public bool AddRange(IEnumerable<TEntity> entities)
+        public bool Edit(T entity)
         {
-            try
-            {
-                tbl.AddRange(entities);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            db.Entry(entity).State = EntityState.Modified;
+            SaveChange();
+            return true;
         }
 
-        public bool Edit(TEntity entity)
+        public IEnumerable<T> Get()
         {
-            try
-            {
-                db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            return tbl.ToList();
         }
 
-        public TEntity Get(object id)
-        {
-            return tbl.Find(id);
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return tbl;
-        }
-
-        public IEnumerable<TEntity> GetBy(Func<TEntity, bool> predicate)
+        public IEnumerable<T> Get(Expression<Func<T, bool>> predicate)
         {
             return tbl.Where(predicate);
         }
 
-        public TEntity GetBy1(Expression<Func<TEntity, bool>> where)
+        public T Get(object id)
         {
-            try
-            {
-                return tbl.Where(where).FirstOrDefault();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return tbl.Find(id);
         }
 
         public bool Remove(object id)
         {
-            try
-            {
-                tbl.Remove(Get(id));
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            tbl.Remove(tbl.Find(id));
+            SaveChange();
+            return true;
         }
 
-        public bool Remove(TEntity entity)
+        public void SaveChange()
         {
-            try
-            {
-                tbl.Remove(entity);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
-
-        public bool RemoveRange(IEnumerable<TEntity> entities)
-        {
-            try
-            {
-                tbl.RemoveRange(entities);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
-
-        public TEntity SingleBy(Func<TEntity, bool> predicate)
-        {
-            return tbl.FirstOrDefault(predicate);
-        }
-
-        public bool Update(TEntity entity)
-        {
-            try
-            {
-                tbl.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-
+            db.SaveChanges();
         }
     }
 }
-

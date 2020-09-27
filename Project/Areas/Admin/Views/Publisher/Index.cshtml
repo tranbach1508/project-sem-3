@@ -3,23 +3,23 @@
 }
 
 <div class="container-fluid">
-    <div class="mb-10"><button type="button" class="btn btn-success show-form-accadmin">Add account admin</button></div>
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-publisher">Add publisher</button></div>
     <div class="card">
-        <div class="accadmin-form card-body">
-            <form id="add-accadmin" method="post">
+        <div class="publisher-form card-body">
+            <form id="add-publisher" method="post">
                 <div class="form-group" style="display:none">
-                    <input type="text" class="form-control" id="id" placeholder="Id">
+                    <input type="text" class="form-control" id="id" placeholder="Book Publisher">
                 </div>
                 <div class="form-group">
-                    <label for="name">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username">
+                    <label for="name">Publisher</label>
+                    <input type="text" class="form-control" id="name" placeholder="Publisher">
                 </div>
                 <div class="form-group">
-                    <label for="name">Password</label>
-                    <input type="text" class="form-control" id="password" placeholder="Password"/>
+                    <label for="name">Infomation</label>
+                    <textarea class="form-control" id="info" placeholder="Infomation"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary add-accadmin">Submit</button>
-                <button type="button" class="btn btn-primary update-accadmin" style="display: none">Update</button>
+                <button type="submit" class="btn btn-primary add-publisher">Submit</button>
+                <button type="button" class="btn btn-primary update-publisher" style="display: none">Update</button>
                 <button type="button" class="btn btn-light close-form">Close</button>
             </form>
         </div>
@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Infomation</th>
                     <th scope="col">Configs</th>
                 </tr>
             </thead>
@@ -41,49 +41,49 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('.accadmin-form').hide();
-        $('.show-form-accadmin').click(function () {
-            $('.accadmin-form').show();
+        $('.publisher-form').hide();
+        $('.show-form-publisher').click(function () {
+            $('.publisher-form').show();
         });
-        // add accadmin
-        $('#add-accadmin').submit(function (event) {
+        // add publisher
+        $('#add-publisher').submit(function (event) {
             event.preventDefault();
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Insert", // Controller/View
+                    url: "Publisher/Insert", // Controller/View
                     data: { //Passing data
                         Id: generateId(6),
-                        Username: $("#username").val(),
-                        Password: $("#password").val(),
+                        Name: $("#name").val(),
+                        Info: $("#info").val(),
                     },
                     success: function (response) {
                         load();
                     }
                 });
         })
-        // delete accadmin
+        // delete publisher
 
         $('.close-form').click(function () {
-            $('.accadmin-form').hide();
+            $('.publisher-form').hide();
         })
-        $(document).on('click', '.edit-accadmin', function () {
-            $('.accadmin-form').show();
+        $(document).on('click', '.edit-publisher', function () {
+            $('.publisher-form').show();
             $('#id').val($(this).attr('data-id')),
-                $('#username').val($(this).attr('data-username')),
-                $('#password').val($(this).attr('data-password')),
-                $('.update-accadmin').show();
-            $('.add-accadmin').hide();
+                $('#name').val($(this).attr('data-name')),
+                $('#info').val($(this).attr('data-info')),
+                $('.update-publisher').show();
+            $('.add-publisher').hide();
         })
-        $('.update-accadmin').click(function () {
+        $('.update-publisher').click(function () {
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Edit", // Controller/View
+                    url: "Publisher/Edit", // Controller/View
                     data: { //Passing data
                         Id: $('#id').val(),
-                        Username: $('#username').val(),
-                        Password: $('#password').val(),
+                        Name: $('#name').val(),
+                        Info: $('#info').val(),
                     },
                     success: function (response) {
                         load();
@@ -91,11 +91,11 @@
                 });
         })
         load();
-        $(document).on('click', '.remove-accadmin', function () {
+        $(document).on('click', '.remove-publisher', function () {
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "AccAdmin/Delete", // Controller/View
+                    url: "Publisher/Delete", // Controller/View
                     data: { //Passing data
                         Id: $(this).attr('data-id'),
                     },
@@ -106,11 +106,11 @@
         })
         function load() {
             var content;
-            $.get("AccAdmin/Get", function (adms) {
-                adms.map(function (adm, index) {
-                    content += '<tr><th scope="row">' + adm.Id + '</th><td>' + adm.Username + '</td><td>' + adm.Password + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-accadmin" data-id="' + adm.Id + '" data-username="' + adm.Username + '" data-password="' + adm.Password + '">Edit</button><button type="button" class="btn btn-danger remove-accadmin" data-id=' + adm.Id + '>Delete</button></div></td></tr>';
+            $.get("Publisher/Get", function (publishers) {
+                publishers.map(function (publisher, index) {
+                    content += '<tr><th scope="row">' + publisher.Id + '</th><td>' + publisher.Name + '</td><td>' + publisher.Info + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-publisher" data-id="' + publisher.Id + '" data-name="' + publisher.Name + '" data-info="' + publisher.Info + '">Edit</button><button type="button" class="btn btn-danger remove-publisher" data-id=' + publisher.Id + '>Delete</button></div></td></tr>';
                 })
-                if (adms.length > 0) {
+                if (publishers.length > 0) {
                     $('table tbody').html(content);
                 } else {
                     $('table tbody').html("");

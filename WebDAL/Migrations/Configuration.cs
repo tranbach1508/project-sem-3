@@ -9,7 +9,9 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "WebDAL.DataModels.ShopContext";
         }
 
         protected override void Seed(WebDAL.DataModels.ShopContext context)
