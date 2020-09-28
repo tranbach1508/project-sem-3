@@ -74,5 +74,10 @@ namespace Project.Areas.Admin.Controllers
         {
             return Json(rp.Get(), JsonRequestBehavior.AllowGet);
         }
+
+        public Publisher GetById(string id)
+        {
+            return rp.Get(id);
+        }
     }
 }

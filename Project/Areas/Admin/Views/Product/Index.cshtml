@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-product">Add product</button></div>
+    <div class="card">
+        <div class="product-form card-body">
+            <form id="add-product" method="post">
+                <div class="form-group" style="display:none">
+                    <input type="text" class="form-control" id="id" placeholder="Book Category">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Product name">
+                    </div>
+                    <div class="col">
+                        <label for="price">Price</label>
+                        <input type="text" id="price" class="form-control" placeholder="Price">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" id="quantity" class="form-control" placeholder="Quantity">
+                    </div>
+                    <div class="col">
+                        <label for="image">Image</label>
+                        <input type="file" id="image" class="form-control" placeholder="Price">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="category">Category</label>
+                        <select class="custom-select" id="category"></select>
+                    </div>
+                    <div class="col">
+                        <label for="subcategory">Subcategory</label>
+                        <select class="custom-select" id="subcategory"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="author">Author</label>
+                        <select class="custom-select" id="author"></select>
+                    </div>
+                    <div class="col">
+                        <label for="publisher">Publisher</label>
+                        <select class="custom-select" id="publisher"></select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary add-category">Submit</button>
+                <button type="button" class="btn btn-primary update-category" style="display: none">Update</button>
+                <button type="button" class="btn btn-light close-form">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Subcategory</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Configs</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+            $('.product-form').hide();
+            $('.show-form-product').click(function () {
+                $('.product-form').show();
+            });
+            // add product
+            $('#add-product').submit(function (event) {
+                event.preventDefault();
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Product/Insert", // Controller/View
+                        data: { //Passing data
+                            Id: generateId(6),
+                            Name: $("#name").val(),
+                            Quantity: $("#quantity").val(),
+                            Price: $("#price").val(),
+                            Image: $("#image").val(),
+                            CategoryId: $("#category").val(),
+                            SubcategoryId: $("#subcategory").val(),
+                            AuthorId: $("#author").val(),
+                            PublisherId: $("#publisher").val(),
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+
+            $('.close-form').click(function () {
+                $('.product-form').hide();
+            })
+            $(document).on('click','.edit-product',function () {
+                $('.product-form').show();
+                $('#id').val($(this).attr('data-id')),
+                    $('#product').val($(this).attr('data-name')),
+                    $('#category option[value="' + $(this).attr('data-categoryId')+'"]')
+                $('.update-product').show();
+                $('.add-product').hide();
+            })
+            $('.update-product').click(function () {
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Product/Edit", // Controller/View
+                        data: { //Passing data
+                            Id: $('#id').val(),
+                            Name: $("#product").val(),
+                            CategoryId: $("#category").val(),
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+            function generateId(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+            load();
+            $(document).on('click', '.remove-product', function () {
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Product/Delete", // Controller/View
+                        data: { //Passing data
+                            Id: $(this).attr('data-id'),
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+            function load() {
+                var content;
+                $.get("Product/Get", function (products) {
+                    products.map(function (product, index) {
+                        content += '<tr> <th scope="row">' + product.Id + '</th> <td><img src="' + product.Image + '"/></td><td>' + product.Name + '</td><td>' + product.Quantity + '</td><td>' + product.Price + '</td><td>' + product.Category.Name + '</td><td>' + product.Subcategory.Name + '</td><td>' + product.Author.Name + '</td><td>' + product.Publisher.Name + '</td><td> <div class="flex"> <button type="button" class="btn btn-secondary edit-subcategory" data-id="' + product.Id + '" data-name="' + product.Name + '" data-quantity="' + product.Quantity + '" data-price="' + product.Price + '" data-image="' + product.Image + '" data-categoryId="' + product.Category.Id + '" data-subcategoryId="' + product.Subcategory.Id + '" data-authorId="' + product.Author.Id + '" data-publisherId="' + product.publisher.Id + '" > Edit </button> <button type="button" class="btn btn-danger remove-subcategory" data-id=" + product.Id + ">Delete</button> </div></td></tr>';
+                    })
+                    if (products.length > 0) {
+                        $('table tbody').html(content);
+                    } else {
+                        $('table tbody').html("");
+                    }
+                });
+            }
+            function loadSubcategory() {
+                var content;
+                $.get("SubCategory/Get", function (subcategories) {
+                    content = '<option selected disabled>Choose...</option>'
+                    subcategories.map(function (subcategory, index) {
+                        content += '<option value="' + subcategory.Id + '">' + subcategory.Name+'</option>';
+                    })
+                    if (subcategories.length > 0) {
+                        $('#subcategory').html(content);
+                    } else {
+                        $('#subcategory').html("");
+                    }
+                });
+            }
+            loadSubcategory();
+            function loadAuthor() {
+                var content;
+                $.get("Author/Get", function (authors) {
+                    content = '<option selected disabled>Choose...</option>'
+                    authors.map(function (author, index) {
+                        content += '<option value="' + author.Id + '">' + author.Name + '</option>';
+                    })
+                    if (authors.length > 0) {
+                        $('#author').html(content);
+                    } else {
+                        $('#author').html("");
+                    }
+                });
+            }
+            loadAuthor();
+            function loadPublisher() {
+                var content;
+                $.get("Publisher/Get", function (publishers) {
+                    content = '<option selected disabled>Choose...</option>'
+                    publishers.map(function (publisher, index) {
+                        content += '<option value="' + publisher.Id + '">' + publisher.Name + '</option>';
+                    })
+                    if (publishers.length > 0) {
+                        $('#publisher').html(content);
+                    } else {
+                        $('#publisher').html("");
+                    }
+                });
+            }
+            loadPublisher();
+            function loadCategory() {
+                var content;
+                $.get("Category/Get", function (categories) {
+                    content = '<option selected disabled>Choose...</option>'
+                    categories.map(function (category, index) {
+                        content += '<option value="' + category.Id + '">' + category.Name + '</option>';
+                    })
+                    if (categories.length > 0) {
+                        $('#category').html(content);
+                    } else {
+                        $('#category').html("");
+                    }
+                });
+            }
+            loadCategory();
+        })
+
+
+</script>
+

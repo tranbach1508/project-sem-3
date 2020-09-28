@@ -70,5 +70,10 @@ namespace Project.Areas.Admin.Controllers
         {
             return Json(rp.Get(), JsonRequestBehavior.AllowGet);
         }
+
+        public Author GetById(string id)
+        {
+            return rp.Get(id);
+        }
     }
 }

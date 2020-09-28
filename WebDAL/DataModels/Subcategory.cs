@@ -19,5 +19,6 @@ namespace WebDAL.DataModels
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
