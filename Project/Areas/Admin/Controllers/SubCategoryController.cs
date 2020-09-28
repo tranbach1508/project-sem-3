@@ -86,19 +86,9 @@ namespace Project.Areas.Admin.Controllers
             return Json(subcategories, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetById(string id)
+        public Subcategory GetById(string id)
         {
-            var subcategories = rp.Get()
-                    .Select(e => new Subcategory
-                                {
-                                    Id = e.Id,
-                                    Name = e.Name,
-                                    Products = e.Products,
-                                    CategoryId = e.CategoryId,
-                                    Category = cc.GetById(e.CategoryId)
-                                }).ToList();
-
-            return Json(subcategories, JsonRequestBehavior.AllowGet);
+            return rp.Get(id);
         }
     }
 }

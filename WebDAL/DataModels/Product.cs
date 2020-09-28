@@ -16,6 +16,8 @@ namespace WebDAL.DataModels
         public string Image { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
         public string CategoryId { get; set; }
         public string AuthorId { get; set; }
         public string PublisherId { get; set; }
