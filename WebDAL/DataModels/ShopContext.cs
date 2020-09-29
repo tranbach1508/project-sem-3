@@ -33,8 +33,33 @@ namespace WebDAL.DataModels
                 IList<Category> categories = new List<Category>();
                 categories.Add(new Category()
                 {
-                    Id = "B001",
-                    Name = "Sach Giao Khoa"
+                    Id = "B00001",
+                    Name = "Book"
+                });
+                categories.Add(new Category()
+                {
+                    Id = "B00002",
+                    Name = "Magazines"
+                });
+                categories.Add(new Category()
+                {
+                    Id = "B00003",
+                    Name = "Files"
+                });
+                categories.Add(new Category()
+                {
+                    Id = "B00004",
+                    Name = "CDs"
+                });
+                categories.Add(new Category()
+                {
+                    Id = "B00005",
+                    Name = "DVDs"
+                });
+                categories.Add(new Category()
+                {
+                    Id = "B00006",
+                    Name = "Utilities"
                 });
                 foreach (Category category in categories)
                     context.Categories.Add(category);
