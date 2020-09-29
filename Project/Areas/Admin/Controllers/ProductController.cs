@@ -20,8 +20,8 @@ namespace Project.Areas.Admin.Controllers
             {
                 return View("~/Areas/Admin/Views/Product/Index.cshtml");
             }
-
-            [HttpPost]
+        [ValidateInput(false)]
+        [HttpPost]
             public JsonResult Insert(Product pro)
             {
                 try
@@ -77,13 +77,14 @@ namespace Project.Areas.Admin.Controllers
             public JsonResult Get()
             {
                 var products = rp.Get()
-                        .Select(e => new Product
+                        .Select(e => new
                         {
                             Id = e.Id,
                             Name = e.Name,
                             Image = e.Image,
                             Price= e.Price,
                             Quantity = e.Quantity,
+                            Description = e.Description,
                             CategoryId = e.CategoryId,
                             AuthorId = e.AuthorId,
                             PublisherId = e.PublisherId,
@@ -91,7 +92,7 @@ namespace Project.Areas.Admin.Controllers
                             Category = cc.GetById(e.CategoryId),
                             Author = ac.GetById(e.AuthorId),
                             Publisher = pc.GetById(e.PublisherId),
-                            Subcategory = sc.GetById(e.SubcategoryId)
+                            Subcategory = sc.GetById(e.SubcategoryId).Name
                         }).ToList();
 
                 return Json(products, JsonRequestBehavior.AllowGet);

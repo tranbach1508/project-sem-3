@@ -27,5 +27,20 @@ namespace Project.Controllers
         {
             return View("~/Views/Theme/Checkout.cshtml");
         }
+
+        public ActionResult LoginRegister()
+        {
+            return View("~/Views/Theme/LoginRegister.cshtml");
+        }
+
+        public ActionResult Faq()
+        {
+            return View("~/Views/Theme/Faq.cshtml");
+        }
+
+        public ActionResult Contact()
+        {
+            return View("~/Views/Theme/Contact.cshtml");
+        }
     }
 }
