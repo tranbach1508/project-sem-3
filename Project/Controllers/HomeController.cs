@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.Areas.Admin.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Project.Controllers
 {
     public class HomeController : Controller
     {
+        CategoryController cc = new CategoryController();
         public ActionResult Index()
         {
             return View("~/Views/Theme/Home.cshtml");
@@ -41,6 +43,11 @@ namespace Project.Controllers
         public ActionResult Contact()
         {
             return View("~/Views/Theme/Contact.cshtml");
+        }
+
+        public JsonResult GetCategories()
+        {
+            return cc.Get();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Project.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         public Repository<Category> rp = new Repository<Category>();
+        public Repository<Subcategory> sub = new Repository<Subcategory>();
+        public Repository<Product> pro = new Repository<Product>();
         public ActionResult Index()
         {
             return View("~/Areas/Admin/Views/Category/Index.cshtml");
@@ -78,7 +80,31 @@ namespace Project.Areas.Admin.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            return Json(rp.Get(), JsonRequestBehavior.AllowGet);
+            var categories = rp.Get()
+                .Select(c => new Category
+                {
+                Id = c.Id,
+                Name = c.Name,
+                Subcategories = sub.Get(e => e.CategoryId == c.Id)
+                .Select(s =>new Subcategory { 
+                    Id = s.Id,
+                    Name = s.Name
+                }).ToList(),
+                Products = pro.Get(e => e.CategoryId == c.Id)
+                .Select(p => new Product {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Image = p.Image,
+                    Price = p.Price,
+                    Quantity = p.Quantity,
+                    Description = p.Description,
+                    CategoryId = p.CategoryId,
+                    AuthorId = p.AuthorId,
+                    PublisherId = p.PublisherId,
+                    SubcategoryId = p.SubcategoryId,
+                }).ToList()
+                }).ToList();
+            return Json(categories, JsonRequestBehavior.AllowGet);
         }
 
         public Category GetById(string id)

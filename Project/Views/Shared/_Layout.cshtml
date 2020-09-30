@@ -265,47 +265,12 @@
                             <!-- FB's Navigation -->
                             <nav class="fb-navigation">
                                 <ul>
-                                    <li class="dropdown-holder active">
-                                        <a href="index.html">Home</a>
-                                        <ul class="hb-dropdown">
-                                            <li><a href="index.html"><i class="ion ion-ios-home"></i> Home Version 1</a></li>
-                                            <li><a href="index-2.html"><i class="ion ion-ios-home"></i> Home Version 2</a></li>
-                                            <li class="active"><a href="index-3.html"><i class="ion ion-ios-home"></i> Home Version 3</a></li>
-                                            <li><a href="index-4.html"><i class="ion ion-ios-home"></i> Home Version 4</a></li>
-                                        </ul>
+                                    <li>
+                                        @Html.ActionLink("Home", "Index", "Home")
                                     </li>
                                     <li class="dropdown-holder">
-                                        <a href="shop-left-sidebar.html">Shop</a>
-                                        <ul class="hb-dropdown">
-                                            <li>
-                                                <a href="shop-left-sidebar.html">Shop Layouts</a>
-                                                <ul>
-                                                    <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                    <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                    <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                                    <li>@Html.ActionLink("Collection Page", "Collection", "Home")</li>
-                                                    <li><a href="shop-list-left-sidebar.html">Shop List</a></li>
-                                                    <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
-                                                    <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Product Details</a>
-                                                <ul>
-                                                    <li><a href="product-details.html">Product Details</a></li>
-                                                    <li><a href="product-details-reverse.html">Product Details Reverse</a></li>
-                                                    <li><a href="product-details-variable.html">Product Details Variable</a></li>
-                                                    <li><a href="product-details-vertical.html">Product Details Vertical</a></li>
-                                                    <li><a href="product-details-gallery.html">Product Details Gallery</a></li>
-                                                    <li><a href="product-details-group.html">Product Details Group</a></li>
-                                                    <li><a href="product-details-affiliate.html">Product Details Affiliate</a></li>
-                                                    <li><a href="product-details-slider.html">Product Details Slider</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>@Html.ActionLink("Cart", "Cart", "Home")</li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li>@Html.ActionLink("Checkout", "Checkout", "Home")</li>
-                                            <li><a href="compare.html">Compare</a></li>
+                                        @Html.ActionLink("Category", "Collection", "Home")
+                                        <ul class="hb-dropdown" id="nav-categories">
                                         </ul>
                                     </li>
                                     <li class="megamenu-holder">
@@ -608,8 +573,30 @@
         </div>
     </div>
 
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            function loadCategories() {
+                var content = '';
+                $.get("GetCategories", function (categories) {
+                    categories.map(function (category, index) {
+                        var subcontent = '';
+                        category.Subcategories.map(function (subcategory, index1) {
+                            subcontent += '<li><a href="shop-left-sidebar.html">' + subcategory.Name + '</a></li>'
+                        });
+                        content += '<li> <a href="shop-left-sidebar.html">' + category.Name + '</a> <ul> ' + subcontent + '</ul> </li>';
+                        subcontent = '';
+                    })
+                    if (categories.length > 0) {
+                        $('#nav-categories').html(content);
+                    }
+                });
+            }
+            loadCategories();
+        })
+    </script>
 </body>
 </html>
