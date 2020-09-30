@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Configs</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        load();
+        $(document).on('click', '.remove-acccustomer', function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "AccCustomer/Delete", // Controller/View
+                    data: { //Passing data
+                        Id: $(this).attr('data-id'),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        function load() {
+            var content;
+            $.get("AccCustomer/Get", function (cuss) {
+                cuss.map(function (cus, index) {
+                    content += '<tr><th scope="row">' + cus.Id + '</th><td>' + cus.FirstName + '</td><td>' + cus.LastName + '</td><td>' + cus.Email + '</td><td>' + cus.Password + '</td><td>' + cus.Phone + '</td><td>' + cus.Address + '</td><td>' + cus.Country + '</td><td><div class="flex"> <button type="button" class="btn btn-secondary edit-acccustomer" data-id="' + cus.Id + '" data-username="' + cus.Username + '" data-password="' + cus.password + '">Edit</button> <button type="button" class="btn btn-danger remove-acccustomer" data-id=' + cus.Id + '>Delete</button></div></td></tr>';
+                })
+                if (cuss.length > 0) {
+                    $('table tbody').html(content);
+                } else {
+                    $('table tbody').html("");
+                }
+            });
+        }
+        function generateId(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    })
+
+
+
+</script>

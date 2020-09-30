@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-publisher">Add publisher</button></div>
+    <div class="card">
+        <div class="publisher-form card-body">
+            <form id="add-publisher" method="post">
+                <div class="form-group" style="display:none">
+                    <input type="text" class="form-control" id="id" placeholder="Book Publisher">
+                </div>
+                <div class="form-group">
+                    <label for="name">Publisher</label>
+                    <input type="text" class="form-control" id="name" placeholder="Publisher">
+                </div>
+                <div class="form-group">
+                    <label for="name">Infomation</label>
+                    <textarea class="form-control" id="info" placeholder="Infomation"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary add-publisher">Submit</button>
+                <button type="button" class="btn btn-primary update-publisher" style="display: none">Update</button>
+                <button type="button" class="btn btn-light close-form">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Infomation</th>
+                    <th scope="col">Configs</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.publisher-form').hide();
+        $('.show-form-publisher').click(function () {
+            $('.publisher-form').show();
+        });
+        // add publisher
+        $('#add-publisher').submit(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Publisher/Insert", // Controller/View
+                    data: { //Passing data
+                        Id: generateId(6),
+                        Name: $("#name").val(),
+                        Info: $("#info").val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        // delete publisher
+
+        $('.close-form').click(function () {
+            $('.publisher-form').hide();
+        })
+        $(document).on('click', '.edit-publisher', function () {
+            $('.publisher-form').show();
+            $('#id').val($(this).attr('data-id')),
+                $('#name').val($(this).attr('data-name')),
+                $('#info').val($(this).attr('data-info')),
+                $('.update-publisher').show();
+            $('.add-publisher').hide();
+        })
+        $('.update-publisher').click(function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Publisher/Edit", // Controller/View
+                    data: { //Passing data
+                        Id: $('#id').val(),
+                        Name: $('#name').val(),
+                        Info: $('#info').val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        load();
+        $(document).on('click', '.remove-publisher', function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Publisher/Delete", // Controller/View
+                    data: { //Passing data
+                        Id: $(this).attr('data-id'),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        function load() {
+            var content;
+            $.get("Publisher/Get", function (publishers) {
+                publishers.map(function (publisher, index) {
+                    content += '<tr><th scope="row">' + publisher.Id + '</th><td>' + publisher.Name + '</td><td>' + publisher.Info + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-publisher" data-id="' + publisher.Id + '" data-name="' + publisher.Name + '" data-info="' + publisher.Info + '">Edit</button><button type="button" class="btn btn-danger remove-publisher" data-id=' + publisher.Id + '>Delete</button></div></td></tr>';
+                })
+                if (publishers.length > 0) {
+                    $('table tbody').html(content);
+                } else {
+                    $('table tbody').html("");
+                }
+            });
+        }
+        function generateId(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    })
+
+
+
+</script>

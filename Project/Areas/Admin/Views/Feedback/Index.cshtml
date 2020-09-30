@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Customer</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+            load();
+            $(document).on('click', '.remove-feedback', function () {
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "Feedback/Delete", // Controller/View
+                        data: { //Passing data
+                            Id: $(this).attr('data-id'),
+                        },
+                        success: function (response) {
+                            load();
+                        }
+                    });
+            })
+            function load() {
+                var content;
+                $.get("Feedback/Get", function (feedbacks) {
+                    feedbacks.map(function (feedback, index) {
+                        content += '<tr><th scope="row">' + feedback.Id + '</th><td>' + feedback.Content + '</td><td>' + feedback.Product.Name + '</td><td>' + feedback.AccCustomer.FirstName + feedback.AccCustomer.LastName + '</td><td><div class="flex"><button type="button" class="btn btn-danger remove-feedback" data-id=' + feedback.Id + '>Delete</button></div></td></tr>';
+                    })
+                    if (feedbacks.length > 0) {
+                        $('table tbody').html(content);
+                    } else {
+                        $('table tbody').html("");
+                    }
+                });
+            }
+        })
+
+
+</script>

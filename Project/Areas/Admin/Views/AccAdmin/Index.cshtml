@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-accadmin">Add account admin</button></div>
+    <div class="card">
+        <div class="accadmin-form card-body">
+            <form id="add-accadmin" method="post">
+                <div class="form-group" style="display:none">
+                    <input type="text" class="form-control" id="id" placeholder="Id">
+                </div>
+                <div class="form-group">
+                    <label for="name">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="name">Password</label>
+                    <input type="text" class="form-control" id="password" placeholder="Password"/>
+                </div>
+                <button type="submit" class="btn btn-primary add-accadmin">Submit</button>
+                <button type="button" class="btn btn-primary update-accadmin" style="display: none">Update</button>
+                <button type="button" class="btn btn-light close-form">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Configs</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.accadmin-form').hide();
+        $('.show-form-accadmin').click(function () {
+            $('.accadmin-form').show();
+        });
+        // add accadmin
+        $('#add-accadmin').submit(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "AccAdmin/Insert", // Controller/View
+                    data: { //Passing data
+                        Id: generateId(6),
+                        Username: $("#username").val(),
+                        Password: $("#password").val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        // delete accadmin
+
+        $('.close-form').click(function () {
+            $('.accadmin-form').hide();
+        })
+        $(document).on('click', '.edit-accadmin', function () {
+            $('.accadmin-form').show();
+            $('#id').val($(this).attr('data-id')),
+                $('#username').val($(this).attr('data-username')),
+                $('#password').val($(this).attr('data-password')),
+                $('.update-accadmin').show();
+            $('.add-accadmin').hide();
+        })
+        $('.update-accadmin').click(function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "AccAdmin/Edit", // Controller/View
+                    data: { //Passing data
+                        Id: $('#id').val(),
+                        Username: $('#username').val(),
+                        Password: $('#password').val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        load();
+        $(document).on('click', '.remove-accadmin', function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "AccAdmin/Delete", // Controller/View
+                    data: { //Passing data
+                        Id: $(this).attr('data-id'),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        function load() {
+            var content;
+            $.get("AccAdmin/Get", function (adms) {
+                adms.map(function (adm, index) {
+                    content += '<tr><th scope="row">' + adm.Id + '</th><td>' + adm.Username + '</td><td>' + adm.Password + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-accadmin" data-id="' + adm.Id + '" data-username="' + adm.Username + '" data-password="' + adm.Password + '">Edit</button><button type="button" class="btn btn-danger remove-accadmin" data-id=' + adm.Id + '>Delete</button></div></td></tr>';
+                })
+                if (adms.length > 0) {
+                    $('table tbody').html(content);
+                } else {
+                    $('table tbody').html("");
+                }
+            });
+        }
+        function generateId(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    })
+
+
+
+</script>

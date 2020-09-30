@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="mb-10"><button type="button" class="btn btn-success show-form-faq">Add Faq</button></div>
+    <div class="card">
+        <div class="faq-form card-body">
+            <form id="add-faq" method="post">
+                <div class="form-group" style="display:none">
+                    <input type="text" class="form-control" id="id" placeholder="Id">
+                </div>
+                <div class="form-group">
+                    <label for="query">Query</label>
+                    <input type="text" class="form-control" id="query" placeholder="Query">
+                </div>
+                <div class="form-group">
+                    <label for="answer">Answer</label>
+                    <textarea class="form-control" id="answer" placeholder="Answer"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary add-faq">Submit</button>
+                <button type="button" class="btn btn-primary update-faq" style="display: none">Update</button>
+                <button type="button" class="btn btn-light close-form">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Query</th>
+                    <th scope="col">Answer</th>
+                    <th scope="col">Configs</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.faq-form').hide();
+        $('.show-form-faq').click(function () {
+            $('.faq-form').show();
+        });
+        // add faq
+        $('#add-faq').submit(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Faq/Insert", // Controller/View
+                    data: { //Passing data
+                        Id: generateId(6),
+                        Query: $("#query").val(),
+                        Answer: $("#answer").val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        // delete faq
+
+        $('.close-form').click(function () {
+            $('.faq-form').hide();
+        })
+        $(document).on('click', '.edit-faq', function () {
+            $('.faq-form').show();
+            $('#id').val($(this).attr('data-id')),
+                $('#query').val($(this).attr('data-query')),
+                $('#answer').val($(this).attr('data-answer')),
+                $('.update-faq').show();
+            $('.add-faq').hide();
+        })
+        $('.update-faq').click(function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Faq/Edit", // Controller/View
+                    data: { //Passing data
+                        Id: $('#id').val(),
+                        Query: $('#query').val(),
+                        Answer: $('#answer').val(),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        load();
+        $(document).on('click', '.remove-faq', function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Faq/Delete", // Controller/View
+                    data: { //Passing data
+                        Id: $(this).attr('data-id'),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        function load() {
+            var content;
+            $.get("Faq/Get", function (faqs) {
+                faqs.map(function (faq, index) {
+                    content += '<tr><th scope="row">' + faq.Id + '</th><td>' + faq.Query + '</td><td>' + faq.Answer + '</td><td><div class="flex"><button type="button" class="btn btn-secondary edit-faq" data-id="' + faq.Id + '" data-query="' + faq.Query + '" data-answer="' + faq.Answer + '">Edit</button><button type="button" class="btn btn-danger remove-faq" data-id=' + faq.Id + '>Delete</button></div></td></tr>';
+                })
+                if (faqs.length > 0) {
+                    $('table tbody').html(content);
+                } else {
+                    $('table tbody').html("");
+                }
+            });
+        }
+        function generateId(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    })
+
+
+
+</script>
