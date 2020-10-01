@@ -75,14 +75,14 @@
                                                         <img class="primary-img" src='@Href("~/images/product/5_1.jpg")' alt="FB'S Prduct">
                                                         <img class="secondary-img" src='@Href("~/images/product/5_2.jpg")' alt="FB'S Prduct">
                                                     </a>
-                                                    <div class="sticker"><span>New</span></div>
-                                                    <div class="sticker-2"><span>-10%</span></div>
+                                                    @*<div class="sticker"><span>New</span></div>*@
+                                                    @*<div class="sticker-2"><span>-10%</span></div>*@
                                                 </div>
                                                 <!-- Product Image Area End Here -->
                                                 <!-- Begin Product Content Area -->
                                                 <div class="product-content">
                                                     <h2 class="product-name">
-                                                        <a href="product-details.html">Printed Dress</a>
+                                                        <a href="@Url.Action("Index","Product",new { id = pro.Id})">@pro.Name</a>
                                                     </h2>
                                                     <div class="rating-box">
                                                         <ul class="rating">
@@ -94,8 +94,8 @@
                                                         </ul>
                                                     </div>
                                                     <div class="price-box">
-                                                        <span class="new-price">$46.91</span>
-                                                        <span class="old-price">$50.99</span>
+                                                        <span class="new-price">$@pro.Price</span>
+                                                        @*<span class="old-price">$50.99</span>*@
                                                     </div>
                                                     <div class="product-action">
                                                         <ul class="product-action-link">

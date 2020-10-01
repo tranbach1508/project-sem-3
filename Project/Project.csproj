@@ -199,6 +199,7 @@
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="CustomCKFinderAuthenticator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2960,6 +2961,7 @@
     <Content Include="Views\Theme\Faq.cshtml" />
     <Content Include="Views\Theme\Contact.cshtml" />
     <Content Include="Views\Theme\LoginAdmin.cshtml" />
+    <Content Include="Views\Theme\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
