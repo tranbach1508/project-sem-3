@@ -15,11 +15,6 @@ namespace Project.Controllers
             return View("~/Views/Theme/Home.cshtml");
         }
 
-        public ActionResult Collection()
-        {
-            return View("~/Views/Theme/Collection.cshtml");
-        }
-
         public ActionResult Cart()
         {
             return View("~/Views/Theme/Cart.cshtml");

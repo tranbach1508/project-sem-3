@@ -1,43 +1,56 @@
-﻿@model IEnumerable<WebDAL.DataModels.Order>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="container-fluid">
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col">AccCustomerId</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <div>
+                <button>Xem chi tiết</button>
+            </div>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        load();
+        $(document).on('click', '.remove-order', function () {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Order/Delete", // Controller/View
+                    data: { //Passing data
+                        Id: $(this).attr('data-id'),
+                    },
+                    success: function (response) {
+                        load();
+                    }
+                });
+        })
+        function load() {
+            var content;
+            $.get("Order/Get", function (orders) {
+                orders.map(function (order, index) {
+                    content += '<tr><th scope="row">' + order.Id + '</th><td>' + order.Status + '</td><td>' + order.Product.Name + '</td><td>' + order.AccCustomer.FirstName + order.AccCustomer.LastName + '</td><td><div class="flex"><button type="button" class="btn btn-danger remove-order" data-id=' + order.Id + '>Delete</button></div></td></tr>';
+                })
+                if (orders.length > 0) {
+                    $('table tbody').html(content);
+                } else {
+                    $('table tbody').html("");
+                }
+            });
+        }
+    })
+</script>
 
 

@@ -269,7 +269,7 @@
                                         @Html.ActionLink("Home", "Index", "Home")
                                     </li>
                                     <li class="dropdown-holder">
-                                        @Html.ActionLink("Category", "Collection", "Home")
+                                        @Html.ActionLink("Category", "Index", "Collection")
                                         <ul class="hb-dropdown" id="nav-categories">
                                         </ul>
                                     </li>
@@ -581,13 +581,13 @@
         $(document).ready(function () {
             function loadCategories() {
                 var content = '';
-                $.get("GetCategories", function (categories) {
+                $.get("http://localhost:50002/Home/GetCategories", function (categories) {
                     categories.map(function (category, index) {
                         var subcontent = '';
                         category.Subcategories.map(function (subcategory, index1) {
-                            subcontent += '<li><a href="shop-left-sidebar.html">' + subcategory.Name + '</a></li>'
+                            subcontent += '<li><a href="@Url.Action("GetByCategory","Collection")">' + subcategory.Name + '</a></li>'
                         });
-                        content += '<li> <a href="shop-left-sidebar.html">' + category.Name + '</a> <ul> ' + subcontent + '</ul> </li>';
+                        content += '<li> <a href="/Collection/GetByCategory/' + category.Id + '">' + category.Name + '</a> <ul> ' + subcontent + '</ul> </li>';
                         subcontent = '';
                     })
                     if (categories.length > 0) {
