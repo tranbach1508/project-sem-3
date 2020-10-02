@@ -70,3 +70,15 @@ D:\HocTap\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CoreCompileInputs.cache
 D:\HocTap\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CopyComplete
 D:\HocTap\project-sem-3\WebDAL\obj\Debug\WebDAL.dll
 D:\HocTap\project-sem-3\WebDAL\obj\Debug\WebDAL.pdb
+D:\project-sem-3\WebDAL\bin\Debug\WebDAL.dll.config
+D:\project-sem-3\WebDAL\bin\Debug\WebDAL.dll
+D:\project-sem-3\WebDAL\bin\Debug\WebDAL.pdb
+D:\project-sem-3\WebDAL\bin\Debug\EntityFramework.dll
+D:\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\project-sem-3\WebDAL\bin\Debug\EntityFramework.xml
+D:\project-sem-3\WebDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\project-sem-3\WebDAL\obj\Debug\WebDAL.csprojAssemblyReference.cache
+D:\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CoreCompileInputs.cache
+D:\project-sem-3\WebDAL\obj\Debug\WebDAL.csproj.CopyComplete
+D:\project-sem-3\WebDAL\obj\Debug\WebDAL.dll
+D:\project-sem-3\WebDAL\obj\Debug\WebDAL.pdb

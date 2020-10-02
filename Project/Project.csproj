@@ -197,6 +197,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublisherController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
+    <Compile Include="Controllers\AboutusController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -2962,6 +2963,7 @@
     <Content Include="Views\Theme\Contact.cshtml" />
     <Content Include="Views\Theme\LoginAdmin.cshtml" />
     <Content Include="Views\Theme\Product.cshtml" />
+    <Content Include="Views\Theme\Aboutus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2970,6 +2972,7 @@
     <Folder Include="Areas\Admin\Views\OrderDetail\" />
     <Folder Include="Areas\Admin\Views\Order\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Aboutus\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
