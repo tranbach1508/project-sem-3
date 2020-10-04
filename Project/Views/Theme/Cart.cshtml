@@ -33,52 +33,19 @@
                                     <th class="cart-product-name">Product</th>
                                     <th class="fb-product-price">Unit Price</th>
                                     <th class="fb-product-quantity">Quantity</th>
-                                    <th class="fb-product-subtotal">Total</th>
+                                    <th class="fb-product-subtotal">Subtotal</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="fb-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    <td class="fb-product-thumbnail"><a href="#"><img src='@Href("~/images/product-thumb/6.png")' alt="FB's Product Image"></a></td>
-                                    <td class="fb-product-name"><a href="#">Accusantium dolorem1</a></td>
-                                    <td class="fb-product-price"><span class="amount">$46.80</span></td>
-                                    <td class="quantity">
-                                        <label>Quantity</label>
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">$70.00</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="fb-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    <td class="fb-product-thumbnail"><a href="#"><img src='@Href("~/images/product-thumb/3.png")' alt="FB's Product Image"></a></td>
-                                    <td class="fb-product-name"><a href="#">Mug Today is a good day</a></td>
-                                    <td class="fb-product-price"><span class="amount">$71.80</span></td>
-                                    <td class="quantity">
-                                        <label>Quantity</label>
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">$60.50</span></td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="coupon-all">
-                                <div class="coupon">
-                                    <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-                                    <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
-                                </div>
                                 <div class="coupon2">
-                                    <input class="button" name="update_cart" value="Update cart" type="submit">
+                                    <input class="button update_cart" name="update_cart" value="Update cart" type="button">
                                 </div>
                             </div>
                         </div>
@@ -88,8 +55,7 @@
                             <div class="cart-page-total">
                                 <h2>Cart totals</h2>
                                 <ul>
-                                    <li>Subtotal <span>$130.00</span></li>
-                                    <li>Total <span>$130.00</span></li>
+                                    <li data-total="" class="total">Total <span>$130.00</span></li>
                                 </ul>
                                 <a href="#">Proceed to checkout</a>
                             </div>
@@ -154,4 +120,81 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        function loadCart() {
+            var content = '';
+            var total = 0;
+            $.get("http://localhost:50002/Cart/GetCart", function (cart) {
+                cart.map(function (item) {
+                    total += item.ProductPrice * item.Quantity;
+                    content += '<tr data-id="'+item.ProductId+'" data-price="'+item.ProductPrice+'"> <td class="fb-product-remove"><a><i class="fa fa-times"></i></a></td><td class="fb-product-thumbnail"><a href="http://localhost:50002/Product/Index/'+item.ProductId+'"><img style="max-width: 60px" src="'+item.ProductImage+'" alt="'+item.ProductName+'"></a></td><td class="fb-product-name"><a href="http://localhost:50002/Product/Index/'+item.ProductId+'">'+item.ProductName+'</a></td><td class="fb-product-price"><span class="amount">$'+item.ProductPrice+'</span></td><td class="quantity"> <label>Quantity</label> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="'+item.Quantity+'" type="text"> <button type="button" class="dec qtybutton"><i class="fa fa-angle-down"></i></button><button type="button" class="inc qtybutton"><i class="fa fa-angle-up"></i></button></div></td><td class="product-subtotal"><span class="amount">$'+item.Quantity*item.ProductPrice+'</span></td></tr>';
+                })
+                if (cart.length > 0) {
+                    $('table tbody').html(content);
+                    $('.total').text('$' + total);
+                    $('.total').attr('data-total',total);
+                }
+            });
+        }
+        loadCart();
+        $(document).on('click', '.dec.qtybutton', function () {
+            var item = $(this).parents('tr');
+            var parent = $(this).parent();
+            var price = item.attr('data-price');
+            var input = parent.find('input.cart-plus-minus-box');
+            if (input.val() > 1) {
+                input.val(input.val() - 1);
+                var subtotal = item.find('.product-subtotal .amount');
+                subtotal.text('$' + parseInt(input.val()) * price);
+            } else {
+                $(this).parents('tr').remove();
+            }
+            var total = $('.total').attr('data-total');
+            $('.total').attr('data-total', total - price);
+            $('.total').text('$' + (total - price).toString());
+        })
+        $(document).on('click', '.inc.qtybutton', function () {
+            var item = $(this).parents('tr');
+            var price = item.attr('data-price');
+            var parent = $(this).parent();
+            var input = parent.find('input.cart-plus-minus-box');
+            input.val(parseInt(input.val()) + 1);
+            var subtotal = item.find('.product-subtotal .amount');
+            subtotal.text('$' + parseInt(input.val()) * price);
+            var total = $('.total').attr('data-total');
+            $('.total').attr('data-total', parseInt(total) + parseInt(price));
+            $('.total').text('$' + (parseInt(total) + parseInt(price)).toString());
+        })
+        $(document).on('click', '.update_cart', function () {
+            var data = [];
+            $('tbody tr').each(function (index,item) {
+                var product_id = $(item).attr('data-id');
+                var quantity = parseInt($(item).find('input.cart-plus-minus-box').val());
+                data.push({
+                    ProductId: product_id,
+                    Quantity: quantity
+                });
+            })
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                url: 'http://localhost:50002/Cart/UpdateCart',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    loadCart();
+                }
+            });
+        })
+        $(document).on('click', 'td.fb-product-remove a', function () {
+            $(this).parents('tr').remove();
+            var item = $(this).parents('tr');
+            var qty = item.find('.cart-plus-minus-box').val();
+            var price = item.attr('data-price');
+            var total = $('.total').attr('data-total');
+            $('.total').text('$' + (parseInt(total) - parseInt(price) * qty).toString());
+        })
+    })
+</script>
 

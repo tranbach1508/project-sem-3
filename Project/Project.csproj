@@ -201,6 +201,7 @@
     <Compile Include="Areas\Admin\Controllers\PublisherController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\AboutusController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -2976,6 +2977,7 @@
     <Folder Include="Areas\Admin\Views\OrderDetail\" />
     <Folder Include="Areas\Admin\Views\Order\" />
     <Folder Include="Views\Aboutus\" />
+    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
