@@ -19,61 +19,60 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
                 <!-- Login Form s-->
-                <form action="#">
+                <form class="form-login">
                     <div class="login-form">
                         <h4 class="login-title">Login</h4>
                         <div class="row">
                             <div class="col-md-12 col-12 mb-20">
                                 <label>Email Address*</label>
-                                <input class="mb-0" type="email" placeholder="Email Address">
+                                <input id="email_login" class="mb-0" type="email" placeholder="Email Address">
                             </div>
                             <div class="col-12 mb-20">
                                 <label>Password</label>
-                                <input class="mb-0" type="password" placeholder="Password">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
-                                    <input type="checkbox" id="remember_me">
-                                    <label for="remember_me">Remember me</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
-                                <a href="#"> Forgotten pasward?</a>
+                                <input id="password_login" class="mb-0" type="password" placeholder="Password">
                             </div>
                             <div class="col-md-12">
-                                <button class="register-button mt-0">Login</button>
+                                <button type="submit" class="register-button mt-0">Login</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                <form action="#">
+                <form class="form-register">
                     <div class="login-form">
                         <h4 class="login-title">Register</h4>
                         <div class="row">
                             <div class="col-md-6 col-12 mb-20">
                                 <label>First Name</label>
-                                <input class="mb-0" type="text" placeholder="First Name">
+                                <input class="mb-0" type="text" placeholder="First Name" id="first_name">
                             </div>
                             <div class="col-md-6 col-12 mb-20">
                                 <label>Last Name</label>
-                                <input class="mb-0" type="text" placeholder="Last Name">
+                                <input class="mb-0" type="text" placeholder="Last Name" id="last_name">
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label>Email Address*</label>
-                                <input class="mb-0" type="email" placeholder="Email Address">
+                                <input class="mb-0" type="email" placeholder="Email Address" id="email">
                             </div>
-                            <div class="col-md-6 mb-20">
+                            <div class="col-md-12 mb-20">
                                 <label>Password</label>
-                                <input class="mb-0" type="password" placeholder="Password">
+                                <input class="mb-0" type="password" placeholder="Password" id="password">
                             </div>
-                            <div class="col-md-6 mb-20">
-                                <label>Confirm Password</label>
-                                <input class="mb-0" type="password" placeholder="Confirm Password">
+                            <div class="col-md-12 mb-20">
+                                <label>Phone</label>
+                                <input class="mb-0" type="text" placeholder="Phone" id="phone">
+                            </div>
+                            <div class="col-md-12 mb-20">
+                                <label>Country</label>
+                                <input class="mb-0" type="text" placeholder="Country" id="country">
+                            </div>
+                            <div class="col-md-12 mb-20">
+                                <label>Address</label>
+                                <input class="mb-0" type="text" placeholder="Address" id="address">
                             </div>
                             <div class="col-12">
-                                <button class="register-button mt-0">Register</button>
+                                <button type="submit" class="register-button mt-0">Register</button>
                             </div>
                         </div>
                     </div>
@@ -136,3 +135,54 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.form-register').submit(function (e) {
+            e.preventDefault();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "/Customer/Register", // Controller/View
+                    data: { //Passing data
+                        Id: generateId(6),
+                        FirstName: $('#first_name').val(),
+                        LastName: $("#last_name").val(),
+                        Email: $("#email").val(),
+                        Password: $("#password").val(),
+                        Phone: $("#phone").val(),
+                        Country: $("#country").val(),
+                        Address: $("#address").val()
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+        })
+        $('.form-login').submit(function (e) {
+            e.preventDefault();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "/Customer/Login", // Controller/View
+                    data: { //Passing data
+                        email: $("#email_login").val(),
+                        password: $("#password_login").val()
+                    },
+                    success: function (response) {
+                        if (response == "Login successfull") {
+                            window.location.replace("http://localhost:50002/Customer/MyAccount");
+                        }
+                    }
+                });
+        })
+        function generateId(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    })
+</script>

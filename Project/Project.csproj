@@ -202,7 +202,9 @@
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\AboutusController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="CustomCKFinderAuthenticator.cs" />
@@ -2969,6 +2971,7 @@
     <Content Include="Views\Theme\LoginAdmin.cshtml" />
     <Content Include="Views\Theme\Product.cshtml" />
     <Content Include="Views\Theme\Aboutus.cshtml" />
+    <Content Include="Views\Theme\MyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2978,6 +2981,8 @@
     <Folder Include="Areas\Admin\Views\Order\" />
     <Folder Include="Views\Aboutus\" />
     <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Checkout\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

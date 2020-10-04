@@ -13,8 +13,14 @@ namespace WebDAL.DataModels
         [Key]
         public string Id { get; set; }
         public bool Status { get; set; }
-        public double Total { get; set; }
         public string AccCustomerId { get; set; }
+        public string Country { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public DateTime createdAt { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         [ForeignKey("AccCustomerId")]

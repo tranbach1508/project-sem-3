@@ -496,7 +496,6 @@
                 AccCustomerId = "AC00001",
                 createdAt = Convert.ToDateTime("2020-09-27"),
                 Status = true,
-                Total = 2
             });
             orders.Add(new Order()
             {
@@ -504,7 +503,6 @@
                 AccCustomerId = "AC00002",
                 createdAt = Convert.ToDateTime("2020-09-20"),
                 Status = true,
-                Total = 3
             });
             orders.Add(new Order()
             {
@@ -512,7 +510,6 @@
                 AccCustomerId = "AC00003",
                 createdAt = Convert.ToDateTime("2020-09-10"),
                 Status = true,
-                Total = 1
             });
             orders.Add(new Order()
             {
@@ -520,7 +517,6 @@
                 AccCustomerId = "AC00004",
                 createdAt = Convert.ToDateTime("2020-09-30"),
                 Status = true,
-                Total = 2
             });
             orders.Add(new Order()
             {
@@ -528,7 +524,6 @@
                 AccCustomerId = "AC00005",
                 createdAt = Convert.ToDateTime("2020-09-15"),
                 Status = true,
-                Total = 200000
             });
             orders.Add(new Order()
             {
@@ -536,7 +531,6 @@
                 AccCustomerId = "AC00006",
                 createdAt = Convert.ToDateTime("2020-09-01"),
                 Status = true,
-                Total = 8
             });
             orders.Add(new Order()
             {
@@ -544,7 +538,6 @@
                 AccCustomerId = "AC00004",
                 createdAt = Convert.ToDateTime("2020-09-22"),
                 Status = true,
-                Total = 5
             });
             orders.Add(new Order()
             {
@@ -552,7 +545,6 @@
                 AccCustomerId = "AC00002",
                 createdAt = Convert.ToDateTime("2020-09-21"),
                 Status = true,
-                Total = 200000
             });
 
             foreach (Order order in orders)
