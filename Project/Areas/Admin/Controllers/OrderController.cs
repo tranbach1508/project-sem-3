@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,12 +11,21 @@ namespace Project.Areas.Admin.Controllers
 {
     public class OrderController : Controller
     {
-        ShopContext db = new ShopContext();
+        AccCustomerController ccc = new AccCustomerController();
+        ProductController pc = new ProductController();
         public Repository<Order> rp = new Repository<Order>();
         // GET: Admin/Order
         public ActionResult Index()
         {
-            return View("~/Areas/Admin/Views/Order/Index.cshtml");
+            if (Session["admin"] == "")
+            {
+                return View("~/Views/Theme/LoginAdmin.cshtml");
+            }
+            else
+            {
+                return View("~/Areas/Admin/Views/Order/Index.cshtml");
+            }
+            
         }
         [HttpPost]
         public JsonResult Insert(Order ord)
@@ -71,20 +81,21 @@ namespace Project.Areas.Admin.Controllers
         public JsonResult Get()
         {
             var orders = rp.Get()
-                    .Select(e => new Order
+                    .Select(e => new
                     {
                         Id = e.Id,
                         Status = e.Status,
-                        Total = e.Total,
-                        createdAt = e.createdAt,
-                        AccCustomerId = e.AccCustomerId
-                    }).ToList();
+                        createdAt = JsonConvert.SerializeObject(e.createdAt.ToString("MM/dd/yyyy")),
+                        AccCustomerId = e.AccCustomerId,
 
+                    }).ToList();
             return Json(orders, JsonRequestBehavior.AllowGet);
         }
         public Order GetById(string id)
         {
             return rp.Get(id);
         }
+
+
     }
 }

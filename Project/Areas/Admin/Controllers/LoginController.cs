@@ -23,7 +23,7 @@ namespace Project.Areas.Admin.Controllers
         {
             if(rp.Get(i => i.Username == acc.Username && i.Password == acc.Password).Count() > 0)
             {
-                return View("~/Areas/Admin/Views/Home/Index.cshtml"); ;
+                return View("~/Areas/Admin/Views/Home/Index.cshtml");
             }
             else {
                 return View("~/Views/Theme/LoginAdmin.cshtml");

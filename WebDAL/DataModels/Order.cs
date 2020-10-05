@@ -21,7 +21,7 @@ namespace WebDAL.DataModels
         public string City { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime createdAt { get; set; }
+        public DateTime createdAt { get; set; } = DateTime.Now;
         public ICollection<OrderDetail> OrderDetails { get; set; }
         [ForeignKey("AccCustomerId")]
         public virtual AccCustomer AccCustomers { get; set; }

@@ -17,8 +17,8 @@ namespace Project.Controllers
         public ActionResult Index()
         {
             ViewBag.Cart = (List<Cart>)Session["cart"];
-            ViewBag.Customer = Session["customer"];
-            return View("~/Views/Theme/Checkout.cshtml");
+            ViewBag.Customer = (AccCustomer)Session["customer"];
+            return View("~/Views/Theme/Checkout.cshtml", (AccCustomer)Session["customer"]);
         }
 
         public JsonResult Order(Order order)
@@ -28,7 +28,7 @@ namespace Project.Controllers
             if (od.Add(order)){
                 foreach(var item in cart)
                 {
-                    if (odd.Add(new OrderDetail { Id="B0001",Quantity= item.Quantity,ProductId = item.Product.Id,OrderId = order.Id})){
+                    if (odd.Add(new OrderDetail { Id= generateID(), Quantity= item.Quantity,ProductId = item.Product.Id,OrderId = order.Id})){
                         result = true;
                     }else
                     {
@@ -41,6 +41,11 @@ namespace Project.Controllers
             {
                 return Json("Order not successfull", JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public string generateID()
+        {
+            return Guid.NewGuid().ToString("N");
         }
     }
 }

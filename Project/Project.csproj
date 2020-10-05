@@ -2939,6 +2939,7 @@
     <Content Include="CKFinderScripts\lang\bg.json" />
     <Content Include="CKFinderScripts\lang\az.json" />
     <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2978,7 +2979,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Login\" />
     <Folder Include="Areas\Admin\Views\OrderDetail\" />
-    <Folder Include="Areas\Admin\Views\Order\" />
     <Folder Include="Views\Aboutus\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Checkout\" />

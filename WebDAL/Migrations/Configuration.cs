@@ -169,7 +169,15 @@
             });
             foreach (Publisher publisher in publishers)
                 context.Publishers.AddOrUpdate(publisher);
-
+            IList<AccAdmin> admins = new List<AccAdmin>();
+            admins.Add(new AccAdmin()
+            {
+                Id = "Ad00001",
+                Username = "admin",
+                Password = "123456"
+            });
+            foreach (AccAdmin ad in admins)
+                context.AccAdmins.AddOrUpdate(ad);
             //Subcategory
             IList<Subcategory> subcategories = new List<Subcategory>();
             subcategories.Add(new Subcategory()
@@ -430,6 +438,17 @@
                 LastName = "You Kinh",
                 Email = "junche14w@gmail.com",
                 Password = "junche14w",
+                Phone = "0986535430",
+                Country = "VietNam",
+                Address = "Ha Noi, Viet Nam",
+            });
+            accCustomers.Add(new AccCustomer()
+            {
+                Id = "AC00007",
+                FirstName = "Tran",
+                LastName = "Bach",
+                Email = "tranbach2000@gmail.com",
+                Password = "tranbach123",
                 Phone = "0986535430",
                 Country = "VietNam",
                 Address = "Ha Noi, Viet Nam",

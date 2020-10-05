@@ -938,3 +938,4 @@ D:\project-sem-3\Project\obj\Debug\Project.csproj.CopyComplete
 D:\project-sem-3\Project\obj\Debug\Project.dll
 D:\project-sem-3\Project\obj\Debug\Project.pdb
 C:\Users\Admin\Desktop\project-sem-3\Project\bin\MailChimp.Net.dll
+D:\project-sem-3\Project\bin\MailChimp.Net.dll

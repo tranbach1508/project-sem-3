@@ -15,7 +15,15 @@ namespace Project.Areas.Admin.Controllers
         public Repository<Subcategory> rp = new Repository<Subcategory>();
         public ActionResult Index()
         {
-            return View("~/Areas/Admin/Views/Subcategory/Index.cshtml");
+            if (Session["admin"] == "")
+            {
+                return View("~/Views/Theme/LoginAdmin.cshtml");
+            }
+            else
+            {
+                return View("~/Areas/Admin/Views/Subcategory/Index.cshtml");
+            }
+            
         }
 
         [HttpPost]

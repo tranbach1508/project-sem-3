@@ -13,7 +13,15 @@ namespace Project.Areas.Admin.Controllers
         public Repository<Faq> rp = new Repository<Faq>();
         public ActionResult Index()
         {
-            return View("~/Areas/Admin/Views/Faq/Index.cshtml");
+            if (Session["admin"] == "")
+            {
+                return View("~/Views/Theme/LoginAdmin.cshtml");
+            }
+            else
+            {
+                return View("~/Areas/Admin/Views/Faq/Index.cshtml");
+            }
+            
         }
 
         [HttpPost]
