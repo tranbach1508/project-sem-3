@@ -45,7 +45,7 @@ namespace Project.Controllers
         public ActionResult Logout()
         {
             Session["customer"] = null;
-            return View("~/Views/Home/Index.cshtml");
+            return View("~/Views/Theme/Home.cshtml");
         }
 
         public ActionResult MyAccount()

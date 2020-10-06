@@ -71,9 +71,9 @@
                                             <div class="single-product">
                                                 <!-- Begin Product Image Area -->
                                                 <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="primary-img" src='@Href("~/images/product/5_1.jpg")' alt="FB'S Prduct">
-                                                        <img class="secondary-img" src='@Href("~/images/product/5_2.jpg")' alt="FB'S Prduct">
+                                                    <a href="@Url.Action("Index","Product",new { id = pro.Id})">
+                                                        <img class="primary-img" src='@pro.Image' alt="FB'S Prduct">
+                                                        <img class="secondary-img" src='@pro.Image' alt="FB'S Prduct">
                                                     </a>
                                                     @*<div class="sticker"><span>New</span></div>*@
                                                     @*<div class="sticker-2"><span>-10%</span></div>*@

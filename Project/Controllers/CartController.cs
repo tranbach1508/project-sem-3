@@ -65,25 +65,41 @@ namespace Project.Controllers
 
         public JsonResult GetCart()
         {
-            List<Cart> cart = ((List<Cart>)Session["cart"]);
-            var _cart = cart.Select(e => new {
-                ProductId = e.Product.Id,
-                ProductName = e.Product.Name,
-                ProductImage = e.Product.Image,
-                ProductPrice = e.Product.Price,
-                Quantity = e.Quantity
-            });
-            return Json(_cart, JsonRequestBehavior.AllowGet);
+            if(Session["cart"] != null)
+            {
+                var cart = ((List<Cart>)Session["cart"]);
+                cart.Select(e => new {
+                    ProductId = e.Product.Id,
+                    ProductName = e.Product.Name,
+                    ProductImage = e.Product.Image,
+                    ProductPrice = e.Product.Price,
+                    Quantity = e.Quantity
+                });
+                return Json(cart, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var cart = "Cart is empty";
+                return Json(cart, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public JsonResult UpdateCart(List<Item> items)
         {
             List<Models.Cart> cart = new List<Cart>();
-            foreach (var item in items)
+            if(cart.Count() > 0)
             {
-                cart.Add(new Cart { Product = pro.Get(item.ProductId), Quantity = item.Quantity });
+                foreach (var item in items)
+                {
+                    cart.Add(new Cart { Product = pro.Get(item.ProductId), Quantity = item.Quantity });
+                }
+                Session["cart"] = cart;
             }
-            Session["cart"] = cart;
+            else
+            {
+                Session["cart"] = null;
+            }
+            
             return Json("Update to cart successfull", JsonRequestBehavior.AllowGet);
         }
 

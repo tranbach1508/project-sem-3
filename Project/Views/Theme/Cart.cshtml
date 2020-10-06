@@ -126,14 +126,16 @@
             var content = '';
             var total = 0;
             $.get("http://localhost:50002/Cart/GetCart", function (cart) {
-                cart.map(function (item) {
-                    total += item.ProductPrice * item.Quantity;
-                    content += '<tr data-id="'+item.ProductId+'" data-price="'+item.ProductPrice+'"> <td class="fb-product-remove"><a><i class="fa fa-times"></i></a></td><td class="fb-product-thumbnail"><a href="http://localhost:50002/Product/Index/'+item.ProductId+'"><img style="max-width: 60px" src="'+item.ProductImage+'" alt="'+item.ProductName+'"></a></td><td class="fb-product-name"><a href="http://localhost:50002/Product/Index/'+item.ProductId+'">'+item.ProductName+'</a></td><td class="fb-product-price"><span class="amount">$'+item.ProductPrice+'</span></td><td class="quantity"> <label>Quantity</label> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="'+item.Quantity+'" type="text"> <button type="button" class="dec qtybutton"><i class="fa fa-angle-down"></i></button><button type="button" class="inc qtybutton"><i class="fa fa-angle-up"></i></button></div></td><td class="product-subtotal"><span class="amount">$'+item.Quantity*item.ProductPrice+'</span></td></tr>';
-                })
-                if (cart.length > 0) {
+                if (cart != "Cart is empty") {
+                    cart.map(function (item) {
+                        total += item.ProductPrice * item.Quantity;
+                        content += '<tr data-id="' + item.ProductId + '" data-price="' + item.ProductPrice + '"> <td class="fb-product-remove"><a><i class="fa fa-times"></i></a></td><td class="fb-product-thumbnail"><a href="http://localhost:50002/Product/Index/' + item.ProductId + '"><img style="max-width: 60px" src="' + item.ProductImage + '" alt="' + item.ProductName + '"></a></td><td class="fb-product-name"><a href="http://localhost:50002/Product/Index/' + item.ProductId + '">' + item.ProductName + '</a></td><td class="fb-product-price"><span class="amount">$' + item.ProductPrice + '</span></td><td class="quantity"> <label>Quantity</label> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="' + item.Quantity + '" type="text"> <button type="button" class="dec qtybutton"><i class="fa fa-angle-down"></i></button><button type="button" class="inc qtybutton"><i class="fa fa-angle-up"></i></button></div></td><td class="product-subtotal"><span class="amount">$' + item.Quantity * item.ProductPrice + '</span></td></tr>';
+                    })
                     $('table tbody').html(content);
                     $('.total').text('$' + total);
-                    $('.total').attr('data-total',total);
+                    $('.total').attr('data-total', total);
+                } else {
+                    $('table tbody').html('<tr><td colspan="6">Cart is empty</td></tr>');
                 }
             });
         }
