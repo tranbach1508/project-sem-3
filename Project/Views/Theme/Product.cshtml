@@ -88,17 +88,11 @@
                         <div class="product-details-view-content mt-20">
                             <div class="product-info">
                                 <h2>@pro.Name</h2>
-                                <span class="product-details-ref">Reference: demo_11</span>
-                                <div class="rating-box pt-10">
-                                    <ul class="rating-with-review-item">
-                                        <li class="review-item"><a href="#">Write Review</a></li>
-                                    </ul>
-                                </div>
                                 <div class="price-box pb-10">
                                     <span class="new-price">$@pro.Price</span>
                                 </div>
-                                <div class="product-desc">
-                                    @pro.Description
+                                <div class="product-desc" id="product-description">
+                                    @HtmlUtilities.ConvertToPlainText("<p>123</p>")
                                 </div>
                                 <div class="single-add-to-cart">
                                     <form class="cart-quantity mt-0" id="form-cart">

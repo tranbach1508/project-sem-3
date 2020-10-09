@@ -23,6 +23,7 @@ namespace Project.Areas.Admin.Controllers
         {
             if(rp.Get(i => i.Username == acc.Username && i.Password == acc.Password).Count() > 0)
             {
+                Session["admin"] = rp.Get(i => i.Username == acc.Username && i.Password == acc.Password).First();
                 return View("~/Areas/Admin/Views/Home/Index.cshtml");
             }
             else {

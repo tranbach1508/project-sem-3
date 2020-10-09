@@ -9,7 +9,7 @@ namespace Project.Areas.Admin.Controllers
         public Repository<Author> rp = new Repository<Author>();
         public ActionResult Index()
         {
-            if (Session["admin"] == "")
+            if (Session["admin"] == null)
             {
                 return View("~/Views/Theme/LoginAdmin.cshtml");
             }

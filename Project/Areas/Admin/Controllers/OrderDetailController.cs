@@ -11,7 +11,7 @@ namespace Project.Areas.Admin.Controllers
         // GET: Admin/OrderDetail
         public ActionResult Index()
         {
-            if (Session["admin"] == "")
+            if (Session["admin"] == null)
             {
                 return View("~/Views/Theme/LoginAdmin.cshtml");
             }
