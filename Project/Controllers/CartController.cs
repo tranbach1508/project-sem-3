@@ -62,20 +62,25 @@ namespace Project.Controllers
                     return i;
             return -1;
         }
-
+        [HttpGet]
         public JsonResult GetCart()
         {
             if(Session["cart"] != null)
             {
-                var cart = ((List<Cart>)Session["cart"]);
-                cart.Select(e => new {
-                    ProductId = e.Product.Id,
-                    ProductName = e.Product.Name,
-                    ProductImage = e.Product.Image,
-                    ProductPrice = e.Product.Price,
-                    Quantity = e.Quantity
-                });
-                return Json(cart, JsonRequestBehavior.AllowGet);
+                var carts = (List<Cart>)Session["cart"];
+                List<Item> items = new List<Item>();
+                foreach(var cart in carts)
+                {
+                    items.Add(new Item
+                    {
+                        ProductId = cart.Product.Id,
+                        ProductName = cart.Product.Name,
+                        ProductImage = cart.Product.Image,
+                        ProductPrice = cart.Product.Price,
+                        Quantity = cart.Quantity
+                    });
+                }
+                return Json(items, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -84,10 +89,10 @@ namespace Project.Controllers
             }
         }
 
-        public JsonResult UpdateCart(List<Item> items)
+        public JsonResult UpdateCart(List<Item1> items)
         {
             List<Models.Cart> cart = new List<Cart>();
-            if(cart.Count() > 0)
+            if(items.Count() > 0)
             {
                 foreach (var item in items)
                 {
@@ -104,6 +109,15 @@ namespace Project.Controllers
         }
 
         public class Item{
+            public string ProductId { get; set; }
+            public string ProductImage { get; set; }
+            public double ProductPrice { get; set; }
+            public string ProductName { get; set; }
+            public int Quantity { get; set; }
+        }
+
+        public class Item1
+        {
             public string ProductId { get; set; }
             public int Quantity { get; set; }
         }

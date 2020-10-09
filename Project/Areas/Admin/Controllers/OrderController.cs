@@ -87,15 +87,16 @@ namespace Project.Areas.Admin.Controllers
                         Status = e.Status,
                         createdAt = JsonConvert.SerializeObject(e.createdAt.ToString("MM/dd/yyyy")),
                         AccCustomerId = e.AccCustomerId,
-
+                        OrderDetails = e.OrderDetails,
+                        FirstName = e.FirstName,
+                        LastName = e.LastName,
+                        Address = e.Address,
+                        City = e.City,
+                        Email = e.Email,
+                        Phone = e.Phone,
                     }).ToList();
             return Json(orders, JsonRequestBehavior.AllowGet);
         }
-        public Order GetById(string id)
-        {
-            return rp.Get(id);
-        }
-
 
     }
 }

@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBLL.Repositories;
+using WebDAL.DataModels;
 
 namespace Project.Controllers
 {
     public class HomeController : Controller
     {
         CategoryController cc = new CategoryController();
+        Repository<Product> pro = new Repository<Product>();
         public ActionResult Index()
         {
+            ViewBag.products = pro.Get().ToList();
+            ViewBag.category = "All";
             return View("~/Views/Theme/Home.cshtml");
         }
 

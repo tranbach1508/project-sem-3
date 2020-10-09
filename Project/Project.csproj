@@ -2532,6 +2532,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont3e6e3e6e.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2940,6 +2941,7 @@
     <Content Include="CKFinderScripts\lang\az.json" />
     <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetail\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2951,6 +2953,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="userfiles\files\fast-cars-by-igloo-bookworm-hanoi.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2978,7 +2981,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Login\" />
-    <Folder Include="Areas\Admin\Views\OrderDetail\" />
+    <Folder Include="userfiles\images\" />
     <Folder Include="Views\Aboutus\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Checkout\" />

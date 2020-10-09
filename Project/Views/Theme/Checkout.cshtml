@@ -28,7 +28,7 @@
                 <div class="coupon-accordion">
                     <!--Accordion Start-->
                     <h3>Returning customer? <a href='@Url.Action("Index","Customer")'><span id="showlogin">Click here to login</span></a></h3>
-                    @if (Session["cart"] != null)
+                    @if (Session["cart"] != null )
                     {
                         <div id="checkout-login" class="coupon-content">
                         <div class="coupon-info">
@@ -87,37 +87,37 @@
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>First Name <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
+                                    <input placeholder="" type="text" id="firstname">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Last Name <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
+                                    <input placeholder="" type="text" id="lastname">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list mb-30">
                                     <label>Address <span class="required">*</span></label>
-                                    <input placeholder="Street address" type="text">
+                                    <input placeholder="Street address" type="text" id="address">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Town / City <span class="required">*</span></label>
-                                    <input type="text">
+                                    <input type="text" id="city">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Email Address <span class="required">*</span></label>
-                                    <input placeholder="" type="email">
+                                    <input placeholder="" type="email" id="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Phone  <span class="required">*</span></label>
-                                    <input type="text">
+                                    <input type="text" id="Phone">
                                 </div>
                             </div>
                         </div>
@@ -280,14 +280,14 @@
                     Id: generateId(6),
                     Status: false,
                     AccCustomerId: "@customer.Id",
-                    Country: $("#country"),
-                    FirstName: $("#first_name"),
-                    LastName: $("#last_name"),
-                    Address: $("#address"),
-                    City: $("#city"),
-                    Email: $('#email'),
-                    Phone: $('phone'),
-                }
+                    Country: $("#country").val(),
+                    FirstName: $("#firstname").val(),
+                    LastName: $("#lastname").val(),
+                    Address: $("#address").val(),
+                    City: $("#city").val(),
+                    Email: $('#email').val(),
+                    Phone: $('#phone').val(),
+                };
                 $.ajax({
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',

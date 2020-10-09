@@ -16,9 +16,16 @@ namespace Project.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
-            ViewBag.Cart = (List<Cart>)Session["cart"];
-            ViewBag.Customer = (AccCustomer)Session["customer"];
-            return View("~/Views/Theme/Checkout.cshtml", (AccCustomer)Session["customer"]);
+            if(Session["customer"] == null)
+            {
+                return View("~/Views/Theme/LoginRegister.cshtml");
+            }
+            else
+            {
+                ViewBag.Cart = (List<Cart>)Session["cart"];
+                ViewBag.Customer = (AccCustomer)Session["customer"];
+                return View("~/Views/Theme/Checkout.cshtml", (AccCustomer)Session["customer"]);
+            }
         }
 
         public JsonResult Order(Order order)

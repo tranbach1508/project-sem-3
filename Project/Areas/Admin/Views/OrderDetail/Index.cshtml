@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var total = 0;
+}
+
+<h2>Order id: @ViewBag.Order.Id</h2>
+<div style="display: flex">
+    <div style="width: 50%">
+        <p>Customer name: @ViewBag.Order.FirstName @ViewBag.Order.LastName</p>
+        <p>Customer email: @ViewBag.Order.Email</p>
+        <p>Phone: @ViewBag.Order.Phone</p>
+        <p>Address: @ViewBag.Order.Address @ViewBag.Order.City</p>
+    </div>
+    <div style="width: 50%">
+        <p>Status: @ViewBag.Order.Status</p>
+        <p>Created at: @ViewBag.Order.createdAt</p>
+    </div>
+</div>
+<table class="table" style="margin-top: 20px">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Product name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Details)
+        {
+            { 
+                
+                total += item.Product.Price * item.Quantity;
+            }
+            <tr>
+                <td><img style="max-width: 60px" src="@item.Product.Image" /></td>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="float: right">
+    <p>Total: @total</p>
+</div>
