@@ -12,13 +12,13 @@ namespace Project.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            if(Session["admin"] == null)
+            if (Session["admin"] == null)
             {
                 return View("~/Views/Theme/LoginAdmin.cshtml");
             }
             else
             {
-                return View();
+                return View("~/Areas/Admin/Views/Product/Index.cshtml");
             }
         }
     }

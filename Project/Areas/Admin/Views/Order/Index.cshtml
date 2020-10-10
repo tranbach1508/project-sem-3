@@ -26,7 +26,8 @@
             var content;
             $.get("Order/Get", function (Orders) {
                 Orders.map(function (ord, index) {
-                    content += '<tr><th scope="row">' + ord.Id + '</th><td>' + ord.Status + '</th><td>' + ord.AccCustomerId + '</th><td>' + JSON.parse(ord.createdAt) + '</th><td> <a data-id="' + ord.Id + '" href="/Admin/OrderDetail/GetByOrder/'+ord.Id+'" class="order-detail" >Detail</a> </td></tr>';
+                    var status = ord.Status == true ? "Delivered" : "Not Delivered";
+                    content += '<tr><th scope="row">' + ord.Id + '</th><td>' + status + '</th><td>' + ord.AccCustomerId + '</th><td>' + JSON.parse(ord.createdAt) + '</th><td> <a data-id="' + ord.Id + '" href="/Admin/OrderDetail/GetByOrder/'+ord.Id+'" class="order-detail" >Detail</a> </td></tr>';
                 })
                 if (Orders.length > 0) {
                     $('table.orders tbody').html(content);

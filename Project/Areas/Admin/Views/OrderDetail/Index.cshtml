@@ -13,8 +13,15 @@
         <p>Address: @ViewBag.Order.Address @ViewBag.Order.City</p>
     </div>
     <div style="width: 50%">
-        <p>Status: @ViewBag.Order.Status</p>
+        <p>Status: @(ViewBag.Order.Status == true ? "Delivered" : "Not deliverd")</p>
         <p>Created at: @ViewBag.Order.createdAt</p>
+        @if (ViewBag.Order.Status == false)
+        {
+            <div style="display: flex">
+                <p>Update status: </p>
+                <a href="/Admin/Order/UpdateStatus/@ViewBag.Order.Id">Delivered</a>
+            </div>
+        }
     </div>
 </div>
 <table class="table" style="margin-top: 20px">

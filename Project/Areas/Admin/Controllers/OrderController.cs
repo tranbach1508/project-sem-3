@@ -13,6 +13,7 @@ namespace Project.Areas.Admin.Controllers
     {
         AccCustomerController ccc = new AccCustomerController();
         ProductController pc = new ProductController();
+        Repository<OrderDetail> od = new Repository<OrderDetail>(); 
         public Repository<Order> rp = new Repository<Order>();
         // GET: Admin/Order
         public ActionResult Index()
@@ -96,6 +97,23 @@ namespace Project.Areas.Admin.Controllers
                         Phone = e.Phone,
                     }).ToList();
             return Json(orders, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UpdateStatus(string id)
+        {
+            var old_order = rp.Get(id);
+            old_order.Status = true;
+            rp.Edit(old_order);
+            ViewBag.Details = od.Get(e => e.OrderId == id);
+            ViewBag.Order = rp.Get(id);
+            if (Session["admin"] == null)
+            {
+                return View("~/Views/Theme/LoginAdmin.cshtml");
+            }
+            else
+            {
+                return View("~/Areas/Admin/Views/OrderDetail/Index.cshtml");
+            }
         }
 
     }

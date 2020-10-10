@@ -42,6 +42,7 @@ namespace Project.Controllers
                         result = false;
                     }
                 }
+                Session["cart"] = null;
                 return Json("Order successfull", JsonRequestBehavior.AllowGet);
             }
             else
